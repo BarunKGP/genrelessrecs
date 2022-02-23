@@ -25,11 +25,13 @@ Many successful music recommendation systems are based on genre [[4]](#reference
   - Lyrics in bag-of-words format for all songs in MSD
 
 ## Methods
+Some of the methods we might be using are:
 - Supervised Learning: Genre Classification [[7]](#references)
   - K-Nearest Neighbors
   - Support Vector Machines
   - Neural Network
   - Logistic Regression
+  - Naive Bayes classifier
 - Unsupervised Learning: Recommendation from Song Lyrics Clustering
   - K-Means
   - Hierarchical Clustering

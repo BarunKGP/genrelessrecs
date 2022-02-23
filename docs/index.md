@@ -9,20 +9,20 @@
   - [References](#references)
 
 ## Introduction
-These days, we often hear the response “I listen to everything except country” when asked about a favorite genre of music. We are currently witnessing the rise of “genre-less music fans” [[1]](#references), as online streaming services have greatly widened listeners’ tastes in music [[2]](#references). Exploring new genres is also beneficial, as research has shown that different genres have different abilities to provide relaxation, motivation, joy, and a stronger sense of self [[3]](#references). With an increase in listeners of many genres, does a recommendation system focused mainly on audio truly reflect the listeners’ interests? We propose an approach where we use features that aren't strongly correlated to genre to predict music for users (one such feature might be lyrics). We call these features "genreless features".
+These days, we often hear the response “I listen to everything except country” when asked about a favorite genre of music. We are currently witnessing the rise of “genre-less music fans” [[1]](#references), as online streaming services have greatly widened listeners’ tastes in music [[2]](#references). Exploring new genres is also beneficial, as research has shown that different genres have different abilities to provide relaxation, motivation, joy, and a stronger sense of self [[3]](#references). Many successful music recommendation systems are based on genre [[4]](#references), but social features [[5]](#references) and lyrics-based recommendations have been shown to perform just as well as audio-based recommendations [[6]](#references). With an increase in listeners of many genres, does a recommendation system focused mainly on audio truly reflect the listeners’ interests?  
 
 ## Problem Definition
-Many successful music recommendation systems are based on genre [[4]](#references) and social features [[5]](#references), but lyrics-based recommendations have been shown to perform just as well as audio-based recommendations [[6]](#references). With the increase in genre-less music fans and the benefits of exploring new genres, we propose a song recommendation system with two goals:
+We propose an approach where we use features that aren't strongly correlated to genre to predict music for users (one such feature might be lyrics). We call these features "genreless features". With the increase in genre-less music fans and the benefits of exploring new genres, we propose two models to assist in creating a song recommendation system:
 1.	Classify the genre of the input song
 2.	Recommend a new song with similar genreless features from a different genre
 
 ## Datasets
 - [Million Song Dataset (MSD)](http://millionsongdataset.com/)
-  - Titles, artists, audio features, etc.
+  - Fields associated with songs from Spotify - Titles, artists, audio features, artist_name, danceability, loudness, etc.
 - [Tagtraum Genre Annotations](https://www.tagtraum.com/msd_genre_datasets.html) (directly associated with MSD)
-  - Genre labels for all songs in MSD
+  - Robustness of genre annotations and allowing for ambiguity with MSD; genre ground truths (e.g. metal and punk)
 - [musiXmatch Dataset](http://millionsongdataset.com/musixmatch/) (directly associated with MSD)
-  - Lyrics in bag-of-words format for all songs in MSD
+  - Collection of song lyrics in bag-of-words format (songs from MSD); lyrics can be correlated with data from MSD using mapping of MXM and MSD IDs
 
 ## Methods
 Some of the methods we might be using are:
@@ -39,9 +39,9 @@ Some of the methods we might be using are:
   - GMM
 
 ## Potential Results and Discussion
-For the task of genre classification, we suspect to build a classifier with roughly 75% accuracy given the well-defined nature of the problem. We especially expect high accuracy classifying songs of mainstream genres such as pop, rock, and rap.  
+For the task of genre classification, we suspect to build a classifier that performs relatively well given the well-defined nature of the problem. We especially expect especially good results classifying songs of mainstream genres such as pop, rock, and rap.  
 
-On the other hand, we suspect that the task of genreless feature clustering will have multiple possible results. One potential result is that the clusters end up looking much like the genre classifications, as artists may connect audio features of genres and lyrical content to strengthen their messages. Any outliers may then offer insight into potential hybrid genres or perhaps could illustrate what factors make a song “genre-defying.” Another potential result is the opposite of this case, where the lyrical clusters have no apparent relationship to genres. This would provide interesting insights into how a diversity of lyrical themes is shared across all musical genres.
+On the other hand, we suspect that the task of genreless feature clustering will have multiple possible results. One potential result is that the clusters end up looking much like the genre classifications, as artists may connect genre and non-genre features to strengthen their messages. Any outliers may then offer insight into potential hybrid genres or perhaps could illustrate what factors make a song “genre-defying.” Another potential result is the opposite of this case, where the feature clusters have no apparent relationship to genres. This would provide interesting insights into how a diversity of themes is shared across all musical genres.
 
 ## Proposed Timeline
 {Insert timeline here}

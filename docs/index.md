@@ -52,7 +52,7 @@ On the other hand, we suspect that the task of genreless feature clustering will
 ## Proposed Timeline
 {Insert timeline here}
 Our proposed timeline for this project is illustrated in the following Gantt chart:
-[Gantt chart](../images/GanttChart.png)
+![Gantt chart](images/GanttChart.png)
 <img src="images/GanttChart.png" alt="GanttChart" width="800">
 
 ## Presentation Video

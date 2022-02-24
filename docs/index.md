@@ -50,10 +50,9 @@ For the task of genre classification, we expect to build a classifier that perfo
 On the other hand, we suspect that the task of genreless feature clustering will have multiple possible results. One potential result is that the clusters end up looking much like the genre classifications, as artists may connect genre and non-genre features to strengthen their messages. Any outliers may then offer insight into potential hybrid genres or perhaps could illustrate what factors make a song “genre-defying.” Another potential result is the opposite of this case, where the feature clusters have no apparent relationship to genres. This would provide interesting insights into how a diversity of themes is shared across all musical genres.
 
 ## Proposed Timeline
-{Insert timeline here}
 Our proposed timeline for this project is illustrated in the following Gantt chart:
-![Gantt chart](images/GanttChart.png)
-<img src="images/GanttChart.png" alt="GanttChart" width="800">
+<!-- ![Gantt chart](images/GanttChart.png) -->
+<img src="images/GanttChart.png" alt="GanttChart" width="1500">
 
 ## Presentation Video
 Here is a brief 3 minute video of the project, explaining our proposal.

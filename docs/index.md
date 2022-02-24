@@ -53,7 +53,7 @@ On the other hand, we suspect that the task of genreless feature clustering will
 {Insert timeline here}
 Our proposed timeline for this project is illustrated in the following Gantt chart:
 [Gantt chart](../images/GanttChart.png)
-
+<img src="../images/GanttChart.png" alt="GanttChart" width="800">
 ## References
 [1] J. Kristensen, “The rise of the genre-less music fan,” RSS, 22-Mar-2021. [Online]. Available: https://www.audiencerepublic.com/blog/the-rise-of-the-genre-less-music-fan. [Accessed: 21-Feb-2022].
 

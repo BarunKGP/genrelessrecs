@@ -58,7 +58,7 @@ Our proposed timeline for this project is illustrated in the following Gantt cha
 ## Presentation Video
 Here is a brief 3 minute video of the project, explaining our proposal.
 <p>
-    <iframe width="560" height="315" src="https://youtu.be/yi6-surkLE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   <iframe width="1205" height="753" src="https://www.youtube.com/embed/yi6-surkLE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 ## References
 [1] J. Kristensen, “The rise of the genre-less music fan,” RSS, 22-Mar-2021. [Online]. Available: https://www.audiencerepublic.com/blog/the-rise-of-the-genre-less-music-fan. [Accessed: 21-Feb-2022].

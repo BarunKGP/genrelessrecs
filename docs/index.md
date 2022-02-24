@@ -31,7 +31,7 @@ We plan to use the Million Song Dataset for our supervised task of genre predict
   - Can be correlated with data from MSD using mapping of song IDs
 
 ## Methods
-Here are of the methods we are considering:
+Here are the methods we are considering:
 - Supervised Learning: Genre Classification [[7]](#references)
   - K-Nearest Neighbors
   - Support Vector Machines

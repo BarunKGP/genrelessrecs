@@ -51,8 +51,22 @@ On the other hand, we suspect that the task of genreless feature clustering will
 
 ## Proposed Timeline
 Our proposed timeline for this project is illustrated in the following Gantt chart:
-<!-- ![Gantt chart](images/GanttChart.png) -->
-<img src="images/GanttChart.png" alt="GanttChart" width="100%">
+<html>
+  <style>
+    div.scroll {
+        margin: 4px, 4px;
+        padding: 4px;
+        background-color: #08c708;
+        width: 300px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+  </style>
+  <div class="scroll">
+    <img src="images/GanttChart.png" alt="GanttChart" width="1800">
+  </div>
+</html>
 
 ## Presentation Video
 Here is a brief 3 minute video of the project, explaining our proposal.

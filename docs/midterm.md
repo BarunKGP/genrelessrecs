@@ -49,7 +49,7 @@ The above image explores the correlation between the features in our dataset. In
 <br />
 ![Speechiness by Genre](images/Image_SpeechinessByGenre.png)
 <br />
-The above image shows how early in our data exploration process, we see different features having different predictability capabilities (forms in its distribution by genre that can provide useful information). We can additionally see again our data is inherently skewed towards the genre "Rock." Finding to subsample datapoints of class Rock in our dataset is a method we hope to explore as we way to mitigate this issue.
+The above image shows how early in our data exploration process, we see different features having different predictability capabilities (forms in its distribution by genre that can provide useful information). We can additionally see again our data is inherently skewed towards the genre "Rock." Finding ways to subsample datapoints of class Rock in our dataset is a method we hope to explore as a way to mitigate this issue.
 
 Included below are scatter plots of some of the audio features vs the genre label.
 ![Duration vs Genre](images/genre-v-duration.png)

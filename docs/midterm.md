@@ -30,8 +30,21 @@ Once we had the Spotify IDs for each song in our dataset, we were able to use th
 - time_signature
 
 ## Dataset Exploration
-The following bar chart shows the distribution of genres in our dataset. We noticed that there is an overwhelming number of datapoints with the Rock genre label, with nearly 42% of the songs labeled in this category. We kept this is mind as we trained our models to ensure the models were not simply learning that most songs are Rock songs.
-![Genre Distribution](images/genre_distribution.png)
+
+### Distribution of Genres
+![Genre Bar Chart](Image_GenreBarChart.png)
+As determined from our review of existing works on the MSD dataset and the associated Tagraum dataset, there is a high degree of data imbalance that we will need to adress for our models. We will explore metrics measuring model "goodness" that takes this into account (metrics such as accuracy may not be a good behavior of a model exploring deeper relationships in the data. There are 15 unique categories that we have as genre labels with about 42% comprising of the category "Rock". After the collection of our data, we retained 168,379 datapoints to train our models - losing points if not having an associated genre in the Tagraum dataset or if not having a mapping from MSD Track ID to Spotify ID. The statistics presented throughout our exploration stage is on the 80 percent of data we use for training and cross validating (not the 20 percent held out for evaluation across models.
+
+### Feature Historgams
+![Feature Distribution Histogram](Image_FeaturesDistributionHistorgrams.png)
+From the various historgrams, we can see initial need for data preprossing given the differences in ranges of values from feature to feature and difference in overall distributions. 
+### Feature Correlation Heat Map
+![Correlation Heatmap](Image_CorrelationHeatMap.png)
+The above image explores the correlation between the features in our dataset. Intuitively we can see some of these relationships. For instance, accousticness which describes songs with less electric amplication is negativelely correlated with loudness and energy. Similarly we can see how valance (how "happy" a song is) and danceability is positively correlated as is loudness and energy.
+### Features by Genre (Danceability and Speechiness)
+![Danceability by Genre](Image_DanceabilitybyGenre.png)
+![Speechiness by Genre](Image_SpeechinessByGenre.png)
+The above image shows how early in our data exploration process, we see different features having different predictability capabilities (forms in its distribution by genre that can provide useful information). We can additionally see again our data is inherently skewed towards the genre "Rock." Finding to subsample datapoints of class Rock in our dataset is a method we hope to explore as we way to mitigate this issue.
 
 
 ## Supervised Methods, Results, and Discussion
@@ -74,7 +87,7 @@ As with the Logistic Regression classifier, we tried running the model again aft
 
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. Additionally, we are able to gain insights into which genres pairs that the model has trouble distinguishing. For example, the model has learned of similarities between the genre pairs Metal/Punk, Rock/Punk, and Country/Folk; these results are promising, as all three pairs of genres often have a large amount of musical overlap.
 
-### Supervised Learning: Neural Network
+### Neural Network
 #### Results and Discussion
 Another model which was saw as one that could have potential success was Neural Network model. We began with a transformation of our features and labels. For our features we utilized sklearn.preprocessing.PowerTransformer with zero mean, unit standard deviation. While Box-Cox and Yeo-Johnson are used for transforming features towards a multivariate normal distribution, we used Yeo-johnson due to its receptiveness of negative valued features. The preprocessing of labels consisted of encoding them into integers.
 

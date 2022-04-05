@@ -142,7 +142,7 @@ The dataset is heavily skewed towards rock songs, which are the overwhelming maj
 In the next part, we will be building a recommendation model that takes a song as input and outputs a list of songs that are similar to the input song. We intend this process to be genre agnostic and our work in part 1 proved that the features we have chosen are not genre specific. This is why our models do not classify genre very well. But this also means that we can use the entire dataset (with dimensionality reduction) to train our recommendation model. Some of the planned improvements include:
  
 - Improving the neural network model by finetuning hyperparameters.
-- Implementing a lyrics-based approach using the bag-of-words model.
+- Implementing a lyrics-based approach using the bag-of-words model, as explained below.
 
 ### Lyrics-Based Approach 
 

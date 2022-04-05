@@ -32,18 +32,18 @@ Once we had the Spotify IDs for each song in our dataset, we were able to use th
 ## Dataset Exploration
 
 ### Distribution of Genres
-![Genre Bar Chart](Image_GenreBarChart.png)
+![Genre Bar Chart](images/Image_GenreBarChart.png)
 As determined from our review of existing works on the MSD dataset and the associated Tagraum dataset, there is a high degree of data imbalance that we will need to adress for our models. We will explore metrics measuring model "goodness" that takes this into account (metrics such as accuracy may not be a good behavior of a model exploring deeper relationships in the data. There are 15 unique categories that we have as genre labels with about 42% comprising of the category "Rock". After the collection of our data, we retained 168,379 datapoints to train our models - losing points if not having an associated genre in the Tagraum dataset or if not having a mapping from MSD Track ID to Spotify ID. The statistics presented throughout our exploration stage is on the 80 percent of data we use for training and cross validating (not the 20 percent held out for evaluation across models.
 
 ### Feature Historgams
-![Feature Distribution Histogram](Image_FeaturesDistributionHistorgrams.png)
+![Feature Distribution Histogram](images/Image_FeaturesDistributionHistorgrams.png)
 From the various historgrams, we can see initial need for data preprossing given the differences in ranges of values from feature to feature and difference in overall distributions. 
 ### Feature Correlation Heat Map
-![Correlation Heatmap](Image_CorrelationHeatMap.png)
+![Correlation Heatmap](images/Image_CorrelationHeatMap.png)
 The above image explores the correlation between the features in our dataset. Intuitively we can see some of these relationships. For instance, accousticness which describes songs with less electric amplication is negativelely correlated with loudness and energy. Similarly we can see how valance (how "happy" a song is) and danceability is positively correlated as is loudness and energy.
 ### Features by Genre (Danceability and Speechiness)
-![Danceability by Genre](Image_DanceabilitybyGenre.png)
-![Speechiness by Genre](Image_SpeechinessByGenre.png)
+![Danceability by Genre](images/Image_DanceabilitybyGenre.png)
+![Speechiness by Genre](images/Image_SpeechinessByGenre.png)
 The above image shows how early in our data exploration process, we see different features having different predictability capabilities (forms in its distribution by genre that can provide useful information). We can additionally see again our data is inherently skewed towards the genre "Rock." Finding to subsample datapoints of class Rock in our dataset is a method we hope to explore as we way to mitigate this issue.
 
 

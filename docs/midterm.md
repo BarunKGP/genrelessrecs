@@ -74,6 +74,39 @@ As with the Logistic Regression classifier, we tried running the model again aft
 
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. Additionally, we are able to gain insights into which genres pairs that the model has trouble distinguishing. For example, the model has learned of similarities between the genre pairs Metal/Punk, Rock/Punk, and Country/Folk; these results are promising, as all three pairs of genres often have a large amount of musical overlap.
 
+## Unsupervised Task Exploration. 
+The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the dataset and the song_features.csv file. From there, a dictionary was created, with the word and word count listed for each track_id. Below is an illustration:
+
+![Dictionary](images/dictionary.jpg)
+
+The dictionary contained 93,355 unique track_ids. From there, three random songs from our dictionary were chosen. Then, we compared the percent overlap between the unique words contained in the random song and those from another song in the dictionary. (Note that we only consider the individual words themselves, not their frequency of occurrence in the songs.) Percent overlap is calculated by comparing the number of shared words over the number of words documented in the random song. For example, if the two songs had six words in common and the random song had a total of ten unique words, then the percent overlap would be 60%, or 0.6. 
+
+We then decided to compare percent overlap values between songs that belong to the same/a different genre as/than the random song.  Here are our results below: 
+
+
+![Same Genre](images/same_genre.png)
+
+![Different Genre](images/diff_genre.png)
+
+## Challenges faced
+The dataset is heavily skewed towards rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization of the dataset to make it more accurate. However, the sheer number of rock songs in the dataset still represents a challenge for analysis.
+ 
+## Plans for Part 2 of the project
+ 
+In the next part, we will be building a recommendation model that takes a song as input and outputs a list of songs that are similar to the input song. We intend this process to be genre agnostic and our work in part 1 proved that the features we have chosen are not genre specific. This is why our models do not classify genre very well. But this also means that we can use the entire dataset (with dimensionality reduction) to train our recommendation model. Some of the planned improvements include:
+ 
+- Improving the neural network model by finetuning hyperparameters.
+- Implementing a lyrics-based approach using the bag-of-words model.
+
+### Lyrics-Based Approach 
+
+A future direction to pursue is to consider applying natural language processing models to our bags of words. As mentioned earlier in the report, we calculated similarity between songs using percent overlap. Since our objective is to find songs with overlap in lyrics, we can ignore songs from the dictionary that have little to no percent overlap. The downside to this metric of course is that the word count does not influence the percent overlap calculation. Two songs can for example contain similar sets of unique words, but may not be similar at all in terms of word count across this commonality. 
+
+The other issue is that even if we find songs with a high percent overlap with the common words and there are similar word count values across, we do not know the order in which the words appear in each of the respective songs. 
+
+A possible solution is to examine natural language processing techniques where the order of the words does not matter. We could use some kind of n-gram methods for example (i.e. like skip-gram, syntactic n-grams, etc). [[8]](#references)
+
+
 ## References
 [1] J. Kristensen, “The rise of the genre-less music fan,” RSS, 22-Mar-2021. [Online]. Available: https://www.audiencerepublic.com/blog/the-rise-of-the-genre-less-music-fan. [Accessed: 21-Feb-2022].
 
@@ -88,3 +121,5 @@ Notice that now, the values on the diagonal are much higher, signifying the mode
 [6] M. Vystrčilová and L. Peška, “Lyrics or audio for music recommendation?,” Proceedings of the 10th International Conference on Web Intelligence, Mining and Semantics, 2020. 
 
 [7] S. Rawat, “Music genre classification using machine learning,” Analytics Steps. [Online]. Available: https://www.analyticssteps.com/blogs/music-genre-classification-using-machine-learning. [Accessed: 21-Feb-2022].
+
+[8] D. Jurafsky and J.H. Martin, "N-gram Language Models," Stanford University. [Online]. Available: https://web.stanford.edu/~jurafsky/slp3/3.pdf. [Accessed: 04-April-2022].

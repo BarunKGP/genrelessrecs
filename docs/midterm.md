@@ -61,6 +61,8 @@ Included below are scatter plots of some of the audio features vs the genre labe
 ## PCA and Dimensionality Reduction
 
 The original dataset that we created using information from Spotify had 13 features as explained previously. All the columns/attributes were considered as features except the columns containing song/track ids and the genre column, which we used as our label. Since this was a large dataset with several features, we used Principal Component Analysis (PCA) to reduce the dimensionality of the dataset which would potentially make it easier to work with. We chose a threshold of 0.95 for the explained variance ratio to keep only the most important features. This helped us get a transformed dataset with 8 components.
+
+The figure below shows the explained variance ratio of each of the PCA components.
 ![Explained Variance Ratio of PCA Components](images/pca_explained_variance.png)
 
 ## Supervised Methods, Results, and Discussion

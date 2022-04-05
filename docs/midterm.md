@@ -30,8 +30,26 @@ Once we had the Spotify IDs for each song in our dataset, we were able to use th
 - time_signature
 
 ## Dataset Exploration
-The following bar chart shows the distribution of genres in our dataset. We noticed that there is an overwhelming number of datapoints with the Rock genre label, with nearly 42% of the songs labeled in this category. We kept this is mind as we trained our models to ensure the models were not simply learning that most songs are Rock songs.
-![Genre Distribution](images/genre_distribution.png)
+
+### Distribution of Genres
+![Genre Bar Chart](images/Image_GenreBarChart.png)
+<br />
+As determined from our review of existing works on the MSD dataset and the associated Tagraum dataset, there is a high degree of data imbalance that we will need to adress for our models. We will explore metrics measuring model "goodness" that takes this into account (metrics such as accuracy may not be a good behavior of a model exploring deeper relationships in the data. There are 15 unique categories that we have as genre labels with about 42% comprising of the category "Rock". After the collection of our data, we retained 168,379 datapoints to train our models - losing points if not having an associated genre in the Tagraum dataset or if not having a mapping from MSD Track ID to Spotify ID. The statistics presented throughout our exploration stage is on the 80 percent of data we use for training and cross validating (not the 20 percent held out for evaluation across models.
+
+### Feature Historgams
+![Feature Distribution Histogram](images/Image_FeaturesDistributionHistorgrams.png)
+<br />
+From the various historgrams, we can see initial need for data preprossing given the differences in ranges of values from feature to feature and difference in overall distributions. 
+### Feature Correlation Heat Map
+![Correlation Heatmap](images/Image_CorrelationHeatMap.png)
+<br />
+The above image explores the correlation between the features in our dataset. Intuitively we can see some of these relationships. For instance, accousticness which describes songs with less electric amplication is negativelely correlated with loudness and energy. Similarly we can see how valance (how "happy" a song is) and danceability is positively correlated as is loudness and energy.
+### Features by Genre (Danceability and Speechiness)
+![Danceability by Genre](images/Image_DanceabilitybyGenre.png)
+<br />
+![Speechiness by Genre](images/Image_SpeechinessByGenre.png)
+<br />
+The above image shows how early in our data exploration process, we see different features having different predictability capabilities (forms in its distribution by genre that can provide useful information). We can additionally see again our data is inherently skewed towards the genre "Rock." Finding to subsample datapoints of class Rock in our dataset is a method we hope to explore as we way to mitigate this issue.
 
 Included below are scatter plots of some of the audio features vs the genre label.
 <p>
@@ -54,7 +72,7 @@ The original dataset that we created using information from Spotify had 13 featu
 | Logistic Regression Classifier (Balanced)   | 0.304        |
 | Decision Tree Classifier (Original)   | 0.314        |
 | Decision Tree Classifier (Balanced)   | 0.205        |
-| Neural Network Classifier | TBD |
+| Neural Network Classifier | 0.492        |
 
  <br>
  
@@ -85,6 +103,22 @@ As with the Logistic Regression classifier, we tried running the model again aft
 ![DT Confusion Matrix Balanced](images/dt_cm_balanced.png)
 
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. Additionally, we are able to gain insights into which genres pairs that the model has trouble distinguishing. For example, the model has learned of similarities between the genre pairs Metal/Punk, Rock/Punk, and Country/Folk; these results are promising, as all three pairs of genres often have a large amount of musical overlap.
+
+### Neural Network
+#### Results and Discussion
+Another model which was saw as one that could have potential success was Neural Network model. We began with a transformation of our features and labels. For our features we utilized sklearn.preprocessing.PowerTransformer with zero mean, unit standard deviation. While Box-Cox and Yeo-Johnson are used for transforming features towards a multivariate normal distribution, we used Yeo-johnson due to its receptiveness of negative valued features. The preprocessing of labels consisted of encoding them into integers.
+
+We began the exploration of this model type by having a simplistic structure to the network, a single hidden layer and an output layer of size number of classes with ReLU units being our activation function of choice throughout. The loss function we utilized was Cross Entropy Loss, but look in phase two for Loss functions that may perhaps be more helpful for the imbalanced data. To optimize our parameters we used SGD with a learning rate of 0.00005 and momentum value of 0.9. We trained over a span of 30 epochs. Although we plan to refine the model further in our second phase, we began the initial stages of model selection using K-Fold Cross Validation with the number of folds being used 4 and choosing models with the lowest average loss across folds. Additionally to see that our proposed models were not overfitting, we plotted the training and validation loss over multiple epochs.
+
+![Training and Validation Loss Plot](images/Image_CrossValidation_Training_and_Validation_Loss.png)
+<br />
+
+After tuning our parameters using the mentioned method, we then trained our chosen model and trained the model over the entire dataset. To provide as a sanity check that our model was in fact learning, we again plotted our loss curve and found the final training loss using Cross Entropy Loss of our model to be 1.76698.
+
+![Training Loss Over Epochs](images/Image_Training_Loss_Over_Epochs.png)
+<br />
+
+For model selection as suggested we simply used the resulting loss value but this plans to be adjusted in our second phase. Additionally, for evaluation metrics to compare with success of other models, we simply use accuracy for now, although definately being altered in the near future (especially given the nature of our dataset, accuracy will not hold as an all-encompassing metric). Nonetheless, we can report for now that our model classifies the correct genre with accuracy 49.1982%. In comparison, a naive approach of predicting all genres as "Rock," would provide an accuracy of 40%. While showing some success in learning relationsihps between our features, the our model undoubtedly has the need of tweaking (Loss Function, Hyperparameters {learning_rate, momentum, etc.), Network Architecture, etc.). In comprasion wtih the other methods, we will work on finding more appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (subsampling of our dominante subCategory, further feature engineering, feature reduction, etc.)
 
 ## Unsupervised Task Exploration. 
 The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the dataset and the song_features.csv file. From there, a dictionary was created, with the word and word count listed for each track_id. Below is an illustration:

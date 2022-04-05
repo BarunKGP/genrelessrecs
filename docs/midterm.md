@@ -34,7 +34,7 @@ Once we had the Spotify IDs for each song in our dataset, we were able to use th
 ### Distribution of Genres
 ![Genre Bar Chart](images/Image_GenreBarChart.png)
 <br />
-As determined from our review of existing works on the MSD dataset and the associated Tagraum dataset, there is a high degree of data imbalance that we will need to adress for our models. We will explore metrics measuring model "goodness" that takes this into account (metrics such as accuracy may not be a good behavior of a model exploring deeper relationships in the data. There are 15 unique categories that we have as genre labels with about 42% comprising of the category "Rock". After the collection of our data, we retained 168,379 datapoints to train our models - losing points if not having an associated genre in the Tagraum dataset or if not having a mapping from MSD Track ID to Spotify ID. The statistics presented throughout our exploration stage is on the 80 percent of data we use for training and cross validating (not the 20 percent held out for evaluation across models.
+As determined from our review of existing works on the MSD dataset and the associated Tagtraum dataset, there is a high degree of data imbalance that we will need to address for our models. We will explore metrics measuring model "goodness" that takes this into account (metrics such as accuracy may not be a good behavior of a model exploring deeper relationships in the data. There are 15 unique categories that we have as genre labels with about 42% comprising of the category "Rock". After the collection of our data, we retained 168,379 datapoints to train our models - losing points if not having an associated genre in the Tagtraum dataset or if not having a mapping from MSD Track ID to Spotify ID. The statistics presented throughout our exploration stage is on the 80 percent of data we use for training and cross validating (not the 20 percent held out for evaluation across models.
 
 ### Feature Historgams
 ![Feature Distribution Histogram](images/Image_FeaturesDistributionHistorgrams.png)
@@ -43,7 +43,7 @@ From the various historgrams, we can see initial need for data preprossing given
 ### Feature Correlation Heat Map
 ![Correlation Heatmap](images/Image_CorrelationHeatMap.png)
 <br />
-The above image explores the correlation between the features in our dataset. Intuitively we can see some of these relationships. For instance, accousticness which describes songs with less electric amplication is negativelely correlated with loudness and energy. Similarly we can see how valance (how "happy" a song is) and danceability is positively correlated as is loudness and energy.
+The above image explores the correlation between the features in our dataset. Intuitively we can see some of these relationships. For instance, accousticness which describes songs with less electric amplication is negativelely correlated with loudness and energy. Similarly, we can see how valance (how "happy" a song is) and danceability are positively correlated, and loudness and energy are positively correlated.
 ### Features by Genre (Danceability and Speechiness)
 ![Danceability by Genre](images/Image_DanceabilitybyGenre.png)
 <br />
@@ -119,10 +119,10 @@ After tuning our parameters using the mentioned method, we then trained our chos
 ![Training Loss Over Epochs](images/Image_Training_Loss_Over_Epochs.png)
 <br />
 
-For model selection as suggested we simply used the resulting loss value but this plans to be adjusted in our second phase. Additionally, for evaluation metrics to compare with success of other models, we simply use accuracy for now, although definately being altered in the near future (especially given the nature of our dataset, accuracy will not hold as an all-encompassing metric). Nonetheless, we can report for now that our model classifies the correct genre with accuracy 49.1982%. In comparison, a naive approach of predicting all genres as "Rock," would provide an accuracy of 40%. While showing some success in learning relationsihps between our features, the our model undoubtedly has the need of tweaking (Loss Function, Hyperparameters {learning_rate, momentum, etc.), Network Architecture, etc.). In comprasion wtih the other methods, we will work on finding more appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (subsampling of our dominante subCategory, further feature engineering, feature reduction, etc.)
+For model selection as suggested we simply used the resulting loss value but this plans to be adjusted in our second phase. Additionally, for evaluation metrics to compare with success of other models, we simply use accuracy for now, although this will definitely be altered in the near future (especially given the nature of our dataset, accuracy will not hold as an all-encompassing metric). Nonetheless, we can report for now that our model classifies the correct genre with accuracy 49.1982%. In comparison, a naive approach of predicting all genres as "Rock," would provide an accuracy of 40%. While showing some success in learning relationships between our features, the our model undoubtedly has the need of tweaking (Loss Function, Hyperparameters, learning_rate, momentum, Network Architecture, etc.). In comparison with the other methods, we will work on finding more appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (subsampling of our dominante subCategory, further feature engineering, feature reduction, etc.)
 
 ## Unsupervised Task Exploration. 
-The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the dataset and the song_features.csv file. From there, a dictionary was created, with the word and word count listed for each track_id. Below is an illustration:
+The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the musiXmatch dataset and the original dataset we created from the MSD, Tagtraum labels, and Spotify features. From there, a dictionary was created with the word and word count listed for each track_id. Below is an illustration:
 
 ![Dictionary](images/dictionary.jpg)
 
@@ -136,7 +136,7 @@ We then decided to compare percent overlap values between songs that belong to t
 ![Different Genre](images/diff_genre.png)
 
 ## Challenges faced
-The dataset is heavily skewed towards rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization of the dataset to make it more accurate. However, the sheer number of rock songs in the dataset still represents a challenge for analysis.
+The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization of the dataset to make it more accurate. However, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
  
 ## Plans for Part 2 of the project
  

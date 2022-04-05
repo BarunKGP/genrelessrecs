@@ -33,6 +33,18 @@ Once we had the Spotify IDs for each song in our dataset, we were able to use th
 The following bar chart shows the distribution of genres in our dataset. We noticed that there is an overwhelming number of datapoints with the Rock genre label, with nearly 42% of the songs labeled in this category. We kept this is mind as we trained our models to ensure the models were not simply learning that most songs are Rock songs.
 ![Genre Distribution](images/genre_distribution.png)
 
+Included below are scatter plots of some of the audio features vs the genre label.
+<p>
+    <img src="images/genre-v-duration.png>" alt="Duration vs. Genre">
+    <img src="images/genre-v-key.png>" alt="Key vs. Genre">
+    <img src="images/genre-v-loudness.png>" alt="Loudness vs. Genre">
+    <img src="images/genre-v-tempo.png>" alt="Tempo vs. Genre">
+    <img src="images/genre-v-time-signature.png>" alt="Time Signature vs. Genre">
+</p>
+## PCA and Dimensionality Reduction
+
+The original dataset that we created using information from Spotify had 13 features as explained previously. All the columns/attributes were considered as features except the columns containing song/track ids and the genre column, which we used as our label. Since this was a large dataset with several features, we used Principal Component Analysis (PCA) to reduce the dimensionality of the dataset which would potentially make it easier to work with. We chose a threshold of 0.95 for the explained variance ratio to keep only the most important features. This helped us get a transformed dataset with 8 components.
+![Explained Variance Ratio of PCA Components](images/pca_explained_variance.png)
 
 ## Supervised Methods, Results, and Discussion
 

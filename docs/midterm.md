@@ -36,7 +36,7 @@ Once we had the Spotify IDs for each song in our dataset, we were able to use th
 <br />
 As determined from our review of existing works on the MSD dataset and the associated Tagtraum dataset, there is a high degree of data imbalance that we will need to address for our models. We will explore metrics measuring model "goodness" that takes this into account (metrics such as accuracy may not be a good behavior of a model exploring deeper relationships in the data. There are 15 unique categories that we have as genre labels with about 42% comprising of the category "Rock". After the collection of our data, we retained 168,379 datapoints to train our models - losing points if not having an associated genre in the Tagtraum dataset or if not having a mapping from MSD Track ID to Spotify ID. The statistics presented throughout our exploration stage is on the 80 percent of data we use for training and cross validating (not the 20 percent held out for evaluation across models.
 
-### Feature Historgams
+### Feature Histograms
 ![Feature Distribution Histogram](images/Image_FeaturesDistributionHistorgrams.png)
 <br />
 From the various historgrams, we can see initial need for data preprossing given the differences in ranges of values from feature to feature and difference in overall distributions. 
@@ -144,7 +144,7 @@ In the next part, we will be building a recommendation model that takes a song a
 
 Some other planned improvements to the current models include:
  
-- Improving the neural network model by finetuning hyperparameters, as explained in [this](https://barunkgp.github.io/genrelessrecs/midterm#neural-network) section.
+- Improving the neural network model by better feature engineering, finetuning hyperparameters, etc., as explained in [this](https://barunkgp.github.io/genrelessrecs/midterm#neural-network) section.
 - Implementing a lyrics-based approach using the bag-of-words model, as explained below.
 
 ### Lyrics-Based Approach 

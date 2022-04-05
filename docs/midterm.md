@@ -136,7 +136,7 @@ We then decided to compare percent overlap values between songs that belong to t
 ![Different Genre](images/diff_genre.png)
 
 ## Challenges faced
-The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization of the dataset to make it more accurate. However, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
+The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization and balancing of the dataset to make it more accurate. However, balancing results in discarding a lot of information. Hence, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
  
 ## Plans for Part 2 of the project
  

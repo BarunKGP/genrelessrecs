@@ -52,13 +52,12 @@ The above image explores the correlation between the features in our dataset. In
 The above image shows how early in our data exploration process, we see different features having different predictability capabilities (forms in its distribution by genre that can provide useful information). We can additionally see again our data is inherently skewed towards the genre "Rock." Finding to subsample datapoints of class Rock in our dataset is a method we hope to explore as we way to mitigate this issue.
 
 Included below are scatter plots of some of the audio features vs the genre label.
-<p>
-    <img src="images/genre-v-duration.png>" alt="Duration vs. Genre">
-    <img src="images/genre-v-key.png>" alt="Key vs. Genre">
-    <img src="images/genre-v-loudness.png>" alt="Loudness vs. Genre">
-    <img src="images/genre-v-tempo.png>" alt="Tempo vs. Genre">
-    <img src="images/genre-v-time-signature.png>" alt="Time Signature vs. Genre">
-</p>
+![Duration vs Genre](images/genre-v-duration.png)
+![Key vs Genre](images/genre-v-key.png)
+![Loudness vs Genre](images/genre-v-loudness.png)
+![Tempo vs Genre](images/genre-v-tempo.png)
+![Time Signature vs Genre](images/genre-v-time-signature.png)
+
 ## PCA and Dimensionality Reduction
 
 The original dataset that we created using information from Spotify had 13 features as explained previously. All the columns/attributes were considered as features except the columns containing song/track ids and the genre column, which we used as our label. Since this was a large dataset with several features, we used Principal Component Analysis (PCA) to reduce the dimensionality of the dataset which would potentially make it easier to work with. We chose a threshold of 0.95 for the explained variance ratio to keep only the most important features. This helped us get a transformed dataset with 8 components.

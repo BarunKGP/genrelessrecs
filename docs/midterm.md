@@ -60,7 +60,7 @@ The above image shows how early in our data exploration process, we see differen
 | Logistic Regression Classifier (Balanced)   | 0.304        |
 | Decision Tree Classifier (Original)   | 0.314        |
 | Decision Tree Classifier (Balanced)   | 0.205        |
-| Neural Network Classifier | TBD |
+| Neural Network Classifier | 0.492        |
 
  <br>
  

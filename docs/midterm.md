@@ -73,7 +73,8 @@ The figure below shows the explained variance ratio of each of the PCA component
 | Logistic Regression Classifier (Balanced)   | 0.304        |
 | Decision Tree Classifier (Original)   | 0.314        |
 | Decision Tree Classifier (Balanced)   | 0.205        |
-| Neural Network Classifier | 0.492        |
+| Neural Network Classifier (Original) | 0.488        |
+| Neural Network Classifier (Balanced) | 0.000        |
 
  <br>
  
@@ -107,19 +108,28 @@ Notice that now, the values on the diagonal are much higher, signifying the mode
 
 ### Neural Network
 #### Results and Discussion
-Another model which was saw as one that could have potential success was Neural Network model. We began with a transformation of our features and labels. For our features we utilized sklearn.preprocessing.PowerTransformer with zero mean, unit standard deviation. While Box-Cox and Yeo-Johnson are used for transforming features towards a multivariate normal distribution, we used Yeo-johnson due to its receptiveness of negative valued features. The preprocessing of labels consisted of encoding them into integers.
+Another model which was saw as one that could have potential success was Neural Network model. We began with a transformation of our features and labels. Prior to running PCA, we started by transforming our features towards a multivariate normal distribution utilizing sklearn's PowerTransformer implementation (with zero mean, unit standard deviation) as used in our other supervised models. While Box-Cox and Yeo-Johnson are both algorithms used for this transformation, we used Yeo-johnson due to its receptiveness of negative valued features. The preprocessing of labels consisted of encoding them into integers (Blues: 0, Country: 1, ..., World: 15).
 
-We began the exploration of this model type by having a simplistic structure to the network, a single hidden layer and an output layer of size number of classes with ReLU units being our activation function of choice throughout. The loss function we utilized was Cross Entropy Loss, but look in phase two for Loss functions that may perhaps be more helpful for the imbalanced data. To optimize our parameters we used SGD with a learning rate of 0.00005 and momentum value of 0.9. We trained over a span of 30 epochs. Although we plan to refine the model further in our second phase, we began the initial stages of model selection using K-Fold Cross Validation with the number of folds being used 4 and choosing models with the lowest average loss across folds. Additionally to see that our proposed models were not overfitting, we plotted the training and validation loss over multiple epochs.
+We began the exploration of this model type by having a simplistic structure to the network, a single hidden layer and an output layer of size number of classes with ReLU units being our activation function of choice throughout. The loss function we utilized was Cross Entropy Loss with SGD to optimize our parametres (with a learning rate of 0.0001 and momentum value of 0.9). We trained over a span of 30 epochs. We began the initial stages of model selection using K-Fold Cross Validation with the number of folds being used 4 and choosing models with the lowest average loss across folds. Additionally to see that our proposed models were not overfitting, we plotted the training and validation loss over multiple epochs.
 
 ![Training and Validation Loss Plot](images/Image_CrossValidation_Training_and_Validation_Loss.png)
 <br />
 
-After tuning our parameters using the mentioned method, we then trained our chosen model and trained the model over the entire dataset. To provide as a sanity check that our model was in fact learning, we again plotted our loss curve and found the final training loss using Cross Entropy Loss of our model to be 1.76698.
+After tuning our parameters using the mentioned method, we then trained our chosen model and trained the model over the entire dataset. To provide as a sanity check that our model was in fact learning, we again plotted our loss curve and found the final training loss using Cross Entropy Loss of our model to be 1.693.
 
 ![Training Loss Over Epochs](images/Image_Training_Loss_Over_Epochs.png)
 <br />
 
-For model selection as suggested we simply used the resulting loss value but this plans to be adjusted in our second phase. Additionally, for evaluation metrics to compare with success of other models, we simply use accuracy for now, although this will definitely be altered in the near future (especially given the nature of our dataset, accuracy will not hold as an all-encompassing metric). Nonetheless, we can report for now that our model classifies the correct genre with accuracy 49.1982%. In comparison, a naive approach of predicting all genres as "Rock," would provide an accuracy of 40%. While showing some success in learning relationships between our features, the our model undoubtedly has the need of tweaking (Loss Function, Hyperparameters, learning_rate, momentum, Network Architecture, etc.). In comparison with the other methods, we will work on finding more appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (subsampling of our dominante subCategory, further feature engineering, feature reduction, etc.)
+For our evaluation metrics to compare with success of other models, we use accuracy, precision, recall, and F1-score (given the nature of our dataset, accuracy will not hold as an all-encompassing metric). For the original imbalanced dataset, our model classifies the correct genre with accuracy 48.828%. In comparison, a naive approach of predicting all genres as "Rock," would provide an accuracy of about 40%. The precision score, recall score and F1 score were calculated to be 0.376, 0.488, and 0.392 respectively. Below is the Confusion Matrix when training on the unbalanced dataset:
+
+![CM_NN_Unbal](images/Image_CM_NN_Unbal.png)
+<br />
+
+As expected our model is heavily influenced by the number of Rock songs in our dataset when no undersampling, oversampling or mixture of both are used among the different labels.
+
+While showing some success in learning relationships between our features, the our model undoubtedly has the need of tweaking in future scope (Loss Function, Hyperparameters, learning_rate, momentum, Network Architecture, etc.). 
+
+In comparison with the other methods, in future scope we would work on finding more appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (more refined utilization of over and under-sampling of our dominante subCategory, further feature engineering, feature reduction, etc.)
 
 ## Unsupervised Task Exploration. 
 The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the musiXmatch dataset and the original dataset we created from the MSD, Tagtraum labels, and Spotify features. From there, a dictionary was created with the word and word count listed for each track_id. Below is an illustration:

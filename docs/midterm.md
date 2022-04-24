@@ -125,7 +125,7 @@ For our evaluation metrics to compare with success of other models, we use accur
 ![CM_NN_Unbal](images/Image_CM_NN_Unbal.png)
 <br />
 
-When training this same model on our balanced dataset, we computed the the final training Cross Entropy Loss to be 1.862. Our achieved accuracy was 38.612. The computed precision score, recall score, and F1 score were 0.446, 0.386, and 0.381. Below is the normalized Confusion Matrix when training on the balanced dataset.
+When training this same model on our balanced dataset, we computed the the final training Cross Entropy Loss to be 1.862. Our achieved accuracy was 38.612%. The computed precision score, recall score, and F1 score were 0.446, 0.386, and 0.381. Below is the normalized Confusion Matrix when training on the balanced dataset:
 
 ![CM_NN_Bal](images/Image_CM_NN_Bal.png)
 <br />

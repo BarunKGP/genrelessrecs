@@ -129,7 +129,7 @@ As expected our model is heavily influenced by the number of Rock songs in our d
 
 While showing some success in learning relationships between our features, the our model undoubtedly has the need of tweaking in future scope (Loss Function, Hyperparameters, learning_rate, momentum, Network Architecture, etc.). 
 
-In comparison with the other methods, in future scope we would work on finding more appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (more refined utilization of over and under-sampling of our dominante subCategory, further feature engineering, feature reduction, etc.)
+In future scope we would work on finding other appropriate forms of metrics that can be used for comparison as well as forms of preprocessing that can address our imbalanced dataset (more refined utilization of over and under-sampling of our different subCategories, further feature engineering, feature reduction, etc.)
 
 ## Unsupervised Task Exploration. 
 The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the musiXmatch dataset and the original dataset we created from the MSD, Tagtraum labels, and Spotify features. From there, a dictionary was created with the word and word count listed for each track_id. Below is an illustration:

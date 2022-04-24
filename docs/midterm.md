@@ -67,9 +67,9 @@ The figure below shows the explained variance ratio of each of the PCA component
 
 ## Supervised Methods, Results, and Discussion
 
-| Classifier    | Accuracy |
-| ----------- | ----------- |
-| Logistic Regression Classifier (Original)      | 0.465       | Precision | Recall | F1 Score |
+| Classifier    | Accuracy | Precision | Recall | F1 Score |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| Logistic Regression Classifier (Original)      | 0.465       ||||
 | Logistic Regression Classifier (Balanced)   | 0.304        ||||
 | Decision Tree Classifier (Original)   | 0.314        ||||
 | Decision Tree Classifier (Balanced)   | 0.205        ||||

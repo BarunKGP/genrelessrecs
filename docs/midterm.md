@@ -75,10 +75,10 @@ The figure below shows the explained variance ratio of each of the PCA component
 | Decision Tree Classifier (Balanced)   | 0.205        ||||
 | Neural Network Classifier (Original) | 0.488        | 0.376 | 0.488 | 0.392 |
 | Neural Network Classifier (Balanced) | 0.386        | 0.446 | 0.386 | 0.381 |
-| Gaussian Naive Bayes (Original) ||||
-| Gaussian Naive Bayes (Balanced)||||
-| SVMs Classifier (Original) ||||
-| SVMs Classifier (Balanced) ||||
+| Gaussian Naive Bayes (Original) | 0.377 | 0.421 | 0.377 | 0.381 |
+| Gaussian Naive Bayes (Balanced)| 0.272 | 0.441 | 0.273 | 0.252 |
+| SVMs Classifier (Original) | 0.481 | 0.347 | 0.482 | 0.365 |
+| SVMs Classifier (Balanced) | 0.387 | 0.427 | 0.387 | 0.364 |
 
  <br>
  

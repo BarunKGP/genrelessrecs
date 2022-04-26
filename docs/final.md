@@ -65,7 +65,7 @@ The original dataset that we created using information from Spotify had 13 featu
 The figure below shows the explained variance ratio of each of the PCA components.
 ![Explained Variance Ratio of PCA Components](images/pca_explained_variance.png)
 
-### Final update:
+#### Final update:
 Also shown below is an interactive plot for PCA with 2 components. It shows the distribution of the data and gives us an idea of how the data is distributed. The clusters are taken from our K-Means output.
 <p>
     <iframe src="https://datapane.com/reports/O7vEyl3/pca-interactive-plot/embed/" width="100%" height="540px" style="border: none;">IFrame not supported</iframe>
@@ -157,18 +157,6 @@ We then decided to compare percent overlap values between songs that belong to t
 
 ![Different Genre](images/different_genre.png)
 
-## Challenges faced
-The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization and balancing of the dataset to make it more accurate. However, balancing results in discarding a lot of information. Hence, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
- 
-## Plans for Part 2 of the project
- 
-In the next part, we will be building a recommendation model that takes a song as input and outputs a list of songs that are similar to the input song. We intend this process to be genre agnostic and our work in part 1 proved that the features we have chosen are not genre specific. This is why our models do not classify genre very well. But this also means that we can use the entire dataset (with dimensionality reduction) to train our recommendation model. 
-
-Some other planned improvements to the current models include:
- 
-- Improving the neural network model by better feature engineering, finetuning hyperparameters, etc., as explained in [this](https://barunkgp.github.io/genrelessrecs/midterm#neural-network) section.
-- Implementing a lyrics-based approach using the bag-of-words model, as explained below.
-
 ### Lyrics-Based Approach 
 
 A future direction to pursue is to consider applying natural language processing models to our bags of words. As mentioned earlier in the report, we calculated similarity between songs using percent overlap. Since our objective is to find songs with overlap in lyrics, we can ignore songs from the dictionary that have little to no percent overlap. The downside to this metric of course is that the word count does not influence the percent overlap calculation. Two songs can for example contain similar sets of unique words, but may not be similar at all in terms of word count across this commonality. 
@@ -177,7 +165,7 @@ The other issue is that even if we find songs with a high percent overlap with t
 
 A possible solution is to examine natural language processing techniques where the order of the words does not matter. We could use some kind of n-gram methods for example (i.e. like skip-gram, syntactic n-grams, etc). [[8]](#references)
 
-## Final Updates 
+#### Final Updates 
 
 ### Lyrics-Based Approach 
 
@@ -242,6 +230,9 @@ Case 2 - TF-IDF
 Recommendation: TRABMMM128F429199D
 
 Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared toward word significance, it is not all that surprising that the recommendations from the two models are completely different from one another. Judging which one is "better" depends perhaps on the users' preferences. If they care that the two songs have a similar set of words with similar frequencies, then Word2Vec would be the more appropriate approach. Otherwise, if they want the songs to have similar enough lyrics but also hold the similar amount of relevance to their respective genres, then the TF-IDF method is more effective. 
+
+## Challenges faced
+The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization and balancing of the dataset to make it more accurate. However, balancing results in discarding a lot of information. Hence, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
 
 ## References
 [1] J. Kristensen, “The rise of the genre-less music fan,” RSS, 22-Mar-2021. [Online]. Available: https://www.audiencerepublic.com/blog/the-rise-of-the-genre-less-music-fan. [Accessed: 21-Feb-2022].

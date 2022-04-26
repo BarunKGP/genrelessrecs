@@ -67,7 +67,9 @@ The figure below shows the explained variance ratio of each of the PCA component
 
 ### Final update:
 Also shown below is an interactive plot for PCA with 2 components. It shows the distribution of the data and gives us an idea of how the data is distributed. The clusters are taken from our K-Means output.
-![Interactive PCA Plot](images/pca_plot.html)
+<p>
+    <iframe src="https://datapane.com/reports/O7vEyl3/pca-interactive-plot/embed/" width="100%" height="540px" style="border: none;">IFrame not supported</iframe>
+</p>
 
 ## Supervised Methods, Results, and Discussion
 

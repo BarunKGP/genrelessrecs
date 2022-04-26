@@ -92,32 +92,34 @@ Also shown below is an interactive plot for PCA with 2 components. It shows the 
 
 ### Original vs. Balanced Dataset Results
 ![original_vs_balanced](images/original_vs_balanced.png)
+
+Overall, we see the highest accuracy from our original Neural Network model and the highest F1 score from our original Random Forest model. Additionally, we can see higher values for all 4 metrics in our original dataset over our balanced dataset. In the future, we are interested in finding other ways of balancing our dataset, such as using focal loss.
  <br>
  
 ### Logistic Regression Classifier
 #### _Original Dataset_
-Using a Logistic Regression classifier, we were able to achieve 46% accuracy for classifying songs in each of the 13 genre classes. The following figure is a normalized confusion matrix for our Logistic Regression classifier. 
+Using a Logistic Regression classifier, we were able to achieve 46% accuracy for classifying songs in each of the 15 genre classes. The following figure is a normalized confusion matrix for our Logistic Regression classifier. 
 ![LR Confusion Matrix Original](images/lr_cm.png)
 
 We noticed that rather than having high values along the diagonal, as we would have liked, we had a rather high number of songs being classified as Rock regardless of the true genre. As mentioned in our Dataset Exploration section, our dataset is heavily skewed towards Rock songs. Thus, our normalized confusion matrix for the Logistic Regression classifier shows that most songs were classified as Rock songs. 
 
 #### _Balanced Dataset_
-To remedy the issue above, we balanced our dataset by finding the lowest genre count, which was 2,141 songs in the New Age genre, and using only that many songs from each genre; in doing so, we ensured an equal number of songs in each genre label. The resulting dataset had 2,141 songs for each of the 13 genres, so it had a total of 27,833 datapoints. 
+To remedy the issue above, we balanced our dataset by finding the lowest genre count, which was 2,141 songs in the New Age genre, and using only that many songs from each genre; in doing so, we ensured an equal number of songs in each genre label. The resulting dataset had 2,141 songs for each of the 15 genres, so it had a total of 27,833 datapoints. 
 
-Using a Logistic Regression classifier with the balanced dataset, we were able to achieve 30% accuracy for classifying songs in each of the 13 genre classes. Notice that the accuracy of our Logistic Regression classifier went down from 46% to 30%. Despite this loss, we believe our new results are better, as the initial 46% accuracy may have been largely due to the fact that the classifier predicted that most songs were Rock songs and ended up being fairly accurate since an overwhelming proportion of the songs were in fact Rock songs. Even with the lower accuracy, our model still performs better than guessing genre at random, which would be roughly 1/13 = 7% accuracy. The following figure is a normalized confusion matrix for our Logistic Regression classifier with the balanced dataset.
+Using a Logistic Regression classifier with the balanced dataset, we were able to achieve 30% accuracy for classifying songs in each of the 15 genre classes. Notice that the accuracy of our Logistic Regression classifier went down from 46% to 30%. Despite this loss, we believe our new results are better, as the initial 46% accuracy may have been largely due to the fact that the classifier predicted that most songs were Rock songs and ended up being fairly accurate since an overwhelming proportion of the songs were in fact Rock songs. Even with the lower accuracy, our model still performs better than guessing genre at random, which would be roughly 1/15 = 6.6% accuracy. The following figure is a normalized confusion matrix for our Logistic Regression classifier with the balanced dataset.
 ![LR Confusion Matrix Balanced](images/lr_cm_balanced.png)
 
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. Additionally, we are able to gain insights into which genres pairs that the model has trouble distinguishing. For example, the model has learned of similarities between the genre pairs Reggae/Rap, Metal/Punk, and Rock/Punk; these results are promising, as all three pairs of genres often have a large amount of musical overlap.
 
 ### Decision Tree Classifier
 #### _Original Dataset_
-Using a Decision Tree classifier, we were able to achieve 31% accuracy for classifying songs in each of the 13 genre classes. The following figure is a normalized confusion matrix for our Decision Tree classifier. 
+Using a Decision Tree classifier, we were able to achieve 31% accuracy for classifying songs in each of the 15 genre classes. The following figure is a normalized confusion matrix for our Decision Tree classifier. 
 ![DT Confusion Matrix Original](images/dt_cm.png)
 
 We noticed that rather than having high values along the diagonal, as we would have liked, we had a rather high number of songs being classified as Rock regardless of the true genre. As mentioned in our Dataset Exploration section, our dataset is heavily skewed towards Rock songs. Thus, our normalized confusion matrix for the Decision Tree classifier also classifies most songs as Rock songs. 
 
 #### _Balanced Dataset_
-As with the Logistic Regression classifier, we tried running the model again after balancing our dataset. Using a Decision Tree classifier with the balanced dataset, we were able to achieve 20% accuracy for classifying songs in each of the 13 genre classes. Again, notice that the accuracy of our Decision Tree classifier has gone down from 31% to 20%. Similar to Logistic Regression, we believe the results from the Decision Tree classifier are largely due to the fact that the classifier predicted most songs were Rock songs and ended up being correct since an overwhelming proportion of the songs were Rock songs. The following figure is a normalized confusion matrix for our Decision Tree classifier with the balanced dataset. 
+As with the Logistic Regression classifier, we tried running the model again after balancing our dataset. Using a Decision Tree classifier with the balanced dataset, we were able to achieve 20% accuracy for classifying songs in each of the 15 genre classes. Again, notice that the accuracy of our Decision Tree classifier has gone down from 31% to 20%. Similar to Logistic Regression, we believe the results from the Decision Tree classifier are largely due to the fact that the classifier predicted most songs were Rock songs and ended up being correct since an overwhelming proportion of the songs were Rock songs. The following figure is a normalized confusion matrix for our Decision Tree classifier with the balanced dataset. 
 ![DT Confusion Matrix Balanced](images/dt_cm_balanced.png)
 
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. Additionally, we are able to gain insights into which genres pairs that the model has trouble distinguishing. For example, the model has learned of similarities between the genre pairs Metal/Punk, Rock/Punk, and Country/Folk; these results are promising, as all three pairs of genres often have a large amount of musical overlap.
@@ -162,13 +164,13 @@ As exhibited in the prior supervised models, our accuracy suffered when balancin
 #### _Original Dataset_
 To improve upon our the results of our Decision Tree classifier, we decided to implement a Random Forest classifier as well. 
 
-Using a Random Forest classifier, we were able to achieve 46% accuracy for classifying songs in each of the 13 genre classes. The following figure is a normalized confusion matrix for our Decision Tree classifier. 
+Using a Random Forest classifier, we were able to achieve 46% accuracy for classifying songs in each of the 15 genre classes. The following figure is a normalized confusion matrix for our Decision Tree classifier. 
 ![RF Confusion Matrix Original](images/rf_cm.png)
 
 We noticed that rather than having high values along the diagonal, as we would have liked, we had a rather high number of songs being classified as Rock regardless of the true genre. As mentioned in our Dataset Exploration section, our dataset is heavily skewed towards Rock songs. Thus, our normalized confusion matrix for the Random Forest classifier also classifies most songs as Rock songs. 
 
 #### _Balanced Dataset_
-We tried running the model again after balancing our dataset. Using a Random Forest classifier with the balanced dataset, we were able to achieve 30% accuracy for classifying songs in each of the 13 genre classes. Again, notice that the accuracy of our Random Forest classifier has gone down from 46% to 30%. Similar to Logistic Regression and Decision Tree, we believe the results from the Random Forest classifier are largely due to the fact that the classifier predicted most songs were Rock songs and ended up being correct since an overwhelming proportion of the songs were Rock songs. The following figure is a normalized confusion matrix for our Random Forest classifier with the balanced dataset. 
+We tried running the model again after balancing our dataset. Using a Random Forest classifier with the balanced dataset, we were able to achieve 30% accuracy for classifying songs in each of the 15 genre classes. Again, notice that the accuracy of our Random Forest classifier has gone down from 46% to 30%. Similar to Logistic Regression and Decision Tree, we believe the results from the Random Forest classifier are largely due to the fact that the classifier predicted most songs were Rock songs and ended up being correct since an overwhelming proportion of the songs were Rock songs. The following figure is a normalized confusion matrix for our Random Forest classifier with the balanced dataset. 
 ![RF Confusion Matrix Balanced](images/rf_cm_balanced.png)
 
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. In contrast to the confusion matrices for Logistic Regression and Decision Tree, however, it is harder to see pairs of genres that are classified as similar from the results of our Random Forest classifier.
@@ -260,7 +262,24 @@ Case 2 - TF-IDF
 
 Recommendation: TRABMMM128F429199D
 
-Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared toward word significance, it is not all that surprising that the recommendations from the two models are completely different from one another. Judging which one is "better" depends perhaps on the users' preferences. If they care that the two songs have a similar set of words with similar frequencies, then Word2Vec would be the more appropriate approach. Otherwise, if they want the songs to have similar enough lyrics but also hold the similar amount of relevance to their respective genres, then the TF-IDF method is more effective. 
+Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared toward word significance, it is not all that surprising that the recommendations from the two models are completely different from one another. Judging which one is "better" depends perhaps on the users' preferences. If they care that the two songs have a similar set of words with similar frequencies, then Word2Vec would be the more appropriate approach. Otherwise, if they want the songs to have similar enough lyrics but also hold the similar amount of relevance to their respective genres, then the TF-IDF method is more effective.
+
+### Spotify Features Approach 
+
+#### Elbow Method
+Using the Elbow Method, we decided to use 5 clusters for KMeans and GMM. We were interested in this result from the Elbow Method since we have prior knowledge of the dataset fitting into 15 categories (the genre labels). However, we decided to use 5 clusters instead of 15 to further uncover relationships between genres and see if we can identify which genres the models groups together. 
+![Elbow Method](images/elbow_method.png)
+
+#### K Means
+The following pie charts show the distribution of genres in each of the 5 clusters from our K Means clustering. Notice the labels for the purity of each of these clusters, ranging from 10.9% to 23.4% purity.
+![K Means](images/kmeans.png)
+
+
+### Gaussian Mixture Model
+The following pie charts show the distribution of genres in each of the 5 clusters from our GMM clustering. Notice the labels for the purity of each of these clusters, ranging from 12.2% to 21.1% purity. In K Means and GMM, you can see that Punk and Metal were highly clustered together, as were Country and Folk. These pairings are expected since these genres are highly related.
+![GMM](images/gmm.png)
+
+
 
 ## Genreless Music Recommendation System
 In the final phase of the project, we decided to build a music recommendation system. As stated in our proposal, we wanted to devise a system that recommends similar songs irrespective of genre. Our hypothesis was that users would like their recommendations to be similar to the songs they like. Genre does not play a very important role. In fact, all our exploratory algorithms showed that the audio features have little correlation with genre, which explains why predicting genre using these features yields poor results. Compared to audio features such as acousticness, energy, tempo, valence, etc., genre is a highly subjective and loose categorical feature. Songs in different genres may end up being closer to one another (with respect to their audio features) and our hypothesis was that users would prefer to listen to these similar songs even if they were in a different genre.

@@ -181,25 +181,14 @@ Here is the Confusion Matrix that we observed when training on Unbalanced data:
 ![CM_SVM_Unbal](images/Image_CM_SVM_Unbal.png)
 <br />
 
+Performance wise, we see that it is quite similar to the neural network with relatively high accuracy (.481) and recall (.482) due to the model's over-emphasis on "Rock" songs. The precision (.347) is relatively low due to the abundance of false positives for Rock songs.  The F1 Score, a harmonic mean of precision and recall thus is hampered (.365)
+
 Here is the Confusion Matrix that we observed when training on our Balanced dataset.
 ![CM_SVM_Bal](images/Image_CM_SVM_Bal.png)
 <br />
 
+As observed prior, our model sacrafices accuracy (.387) and recall (.387) for increase ability for discriminating categories. Our precision rate (.426) thus goes up with less false positives. Due to the improvement in precision and regression with respect to recall, our F1 score for our model trainined on the balanced dataset remains relatively the same (.364).
 
-| Classifier    | Accuracy | Precision | Recall | F1 Score |
-| ----------- | ----------- | ----------- | ----------- | ----------- |
-| Logistic Regression Classifier (Original)      | 0.465 |0.363|0.464|0.363|
-| Logistic Regression Classifier (Balanced)   | 0.304        |0.275|0.307|0.276|
-| Decision Tree Classifier (Original)   | 0.314        |0.319|0.314|0.316|
-| Decision Tree Classifier (Balanced)   | 0.205        |0.200|0.198|0.199|
-| Random Forest Classifier (Original)   | 0.468        |0.396|0.468|0.395|
-| Random Forest Classifier (Balanced)   | 0.309        |0.288|0.309|0.294|
-| Neural Network Classifier (Original) | 0.488        | 0.376 | 0.488 | 0.392 |
-| Neural Network Classifier (Balanced) | 0.386        | 0.446 | 0.386 | 0.381 |
-| Gaussian Naive Bayes (Original) | 0.377 | 0.421 | 0.377 | 0.381 |
-| Gaussian Naive Bayes (Balanced)| 0.272 | 0.441 | 0.273 | 0.252 |
-| SVMs Classifier (Original) | 0.481 | 0.347 | 0.482 | 0.365 |
-| SVMs Classifier (Balanced) | 0.387 | 0.427 | 0.387 | 0.364 |
 ### Random Forest Classifier
 
 #### _Original Dataset_

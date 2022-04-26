@@ -65,6 +65,10 @@ The original dataset that we created using information from Spotify had 13 featu
 The figure below shows the explained variance ratio of each of the PCA components.
 ![Explained Variance Ratio of PCA Components](images/pca_explained_variance.png)
 
+### Final update:
+Also shown below is an interactive plot for PCA with 2 components. It shows the distribution of the data and gives us an idea of how the data is distributed. The clusters are taken from our K-Means output.
+![Interactive PCA Plot](images/pca_plot.html)
+
 ## Supervised Methods, Results, and Discussion
 
 | Classifier    | Accuracy | Precision | Recall | F1 Score |

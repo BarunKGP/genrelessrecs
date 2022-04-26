@@ -9,7 +9,7 @@ We propose an approach where we use features that aren't strongly correlated to 
 
 In completing these two goals, we can still provide a relevant recommendation while fostering the exploration of new genres.
 
-## Dataset Collection[dc]
+## Dataset Collection
 We first collected all 1,000,000 track IDs and song IDs from the [Million Song Dataset](http://millionsongdataset.com/) track_metadata.db file. From there, we were able to find the genre labels for 280,831 of these songs by using the [tagtraum annotation for the Million Song Dataset](https://www.tagtraum.com/msd_genre_datasets.html). We then removed the songs from our dataset that did not contain genre labels. 
 
 To get the features for each song, we utilized the [Spotify API](https://developer.spotify.com/documentation/web-api/). First, we had to find the Spotify IDs that corresponded to the track IDs and song IDs that we collected from the Million Song Dataset. We were able to do this using [Acoustic Brainz Lab's Million Song Dataset Echo Nest mapping archive](https://labs.acousticbrainz.org/million-song-dataset-echonest-archive/). We were able to find corresponding Spotify IDs for 210,475 of our 280,831 datapoints. We then removed the songs which did not have a corresponding Spotify ID. 
@@ -242,7 +242,7 @@ We used a content-based recommendation system where we take song inputs from the
 
 Any song present on Spotify may be entered as input. However, our recommendations are limited to the songs available in our final cleaned Million Song Dataset (~210k tracks).
 
-2. For the input list, find the mean vector. This vector is basically a mean of the audio features of the songs (using the features described in [Dataset Exploration](#dataset-exploration)). We call this the _song center_.
+2. For the input list, find the mean vector. This vector is basically a mean of the audio features of the songs (using the features described in [Dataset Collection](#dataset-collection)). We call this the _song center_.
 3. Find the n-closest datapoints to the song center and recommend the songs corresponding to those datapoints to the user. By default, we recommend `n_songs = 10` but it can be passed as a parameter to our recommendation function to tweak the number of recommendations as desired. To compute the _closeness_ of the datapoints, we used the cosine distance, which can be defined as :
 $$ distance(u,v) = 1 - \frac{u \cdot v}{||u|| ||v||} = 1 - \cos \theta$$
 We used the `cdist` function from the `scipy` library to compute this. 

@@ -296,6 +296,19 @@ Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared
 
 ### Spotify Features Approach 
 
+#### Clustering Evaluation
+##### Elbow Method
+Unbalanced
+Balanced
+
+##### Silhouette Coefficient 
+Unbalanced
+Balanced
+
+##### External Measures : FMS Score, V-Measure Score, Rand Score
+Unbalanced
+Balanced
+
 #### Elbow Method
 Using the Elbow Method, we decided to use 5 clusters for KMeans and GMM. We were interested in this result from the Elbow Method since we have prior knowledge of the dataset fitting into 15 categories (the genre labels). However, we decided to use 5 clusters instead of 15 to further uncover relationships between genres and see if we can identify which genres the models groups together. 
 ![Elbow Method](images/elbow_method.png)

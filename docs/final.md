@@ -65,7 +65,7 @@ The original dataset that we created using information from Spotify had 13 featu
 The figure below shows the explained variance ratio of each of the PCA components.
 ![Explained Variance Ratio of PCA Components](images/pca_explained_variance.png)
 
-#### Final update:
+#### **Final Updates**
 Also shown below is an interactive plot for PCA with 2 components. It shows the distribution of the data and gives us an idea of how the data is distributed. The clusters are taken from our K-Means output.
 <p>
     <iframe src="https://datapane.com/reports/O7vEyl3/pca-interactive-plot/embed/" width="100%" height="540px" style="border: none;">IFrame not supported</iframe>
@@ -73,12 +73,16 @@ Also shown below is an interactive plot for PCA with 2 components. It shows the 
 
 ## Supervised Methods, Results, and Discussion
 
+### Overall Results
+
 | Classifier    | Accuracy | Precision | Recall | F1 Score |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| Logistic Regression Classifier (Original)      | 0.465       ||||
-| Logistic Regression Classifier (Balanced)   | 0.304        ||||
-| Decision Tree Classifier (Original)   | 0.314        ||||
-| Decision Tree Classifier (Balanced)   | 0.205        ||||
+| Logistic Regression Classifier (Original)      | 0.465 |0.363|0.464|0.363|
+| Logistic Regression Classifier (Balanced)   | 0.304        |0.275|0.307|0.276|
+| Decision Tree Classifier (Original)   | 0.314        |0.319|0.314|0.316|
+| Decision Tree Classifier (Balanced)   | 0.205        |0.200|0.198|0.199|
+| Random Forest Classifier (Original)   | 0.468        |0.396|0.468|0.395|
+| Random Forest Classifier (Balanced)   | 0.309        |0.288|0.309|0.294|
 | Neural Network Classifier (Original) | 0.488        | 0.376 | 0.488 | 0.392 |
 | Neural Network Classifier (Balanced) | 0.386        | 0.446 | 0.386 | 0.381 |
 | Gaussian Naive Bayes (Original) | 0.377 | 0.421 | 0.377 | 0.381 |
@@ -86,6 +90,8 @@ Also shown below is an interactive plot for PCA with 2 components. It shows the 
 | SVMs Classifier (Original) | 0.481 | 0.347 | 0.482 | 0.365 |
 | SVMs Classifier (Balanced) | 0.387 | 0.427 | 0.387 | 0.364 |
 
+### Original vs. Balanced Dataset Results
+![original_vs_balanced](images/original_vs_balanced.png)
  <br>
  
 ### Logistic Regression Classifier
@@ -142,8 +148,33 @@ When training this same model on our balanced dataset, we computed the the final
 
 As exhibited in the prior supervised models, our accuracy suffered when balancing the dataset - the result of our model no longer overly predicting the dominant class Rock. When comparing the precision score, we see that our model trained on the balanced dataset is less likely to falsely classify a label as positive that is actually negative (i.e. the issue of labeling datapoints as Rock has been somewhat mitigated). However, we see that the recall score had gone down indicating our new models inability to find all positive examples. A worsened F1 score (a metric that is the harmonic mean of precision and recall) further indicates this inability, calling for further architecture search, hyperparameter tuning, etc.
 
+#### **Final Updates**
 
-## Unsupervised Task Exploration. 
+### Neural Network Classifier
+
+### Gaussian Naive Bayes Classfier
+
+### Supper Vector Machines Classfier
+
+
+### Random Forest Classifier
+
+#### _Original Dataset_
+To improve upon our the results of our Decision Tree classifier, we decided to implement a Random Forest classifier as well. 
+
+Using a Random Forest classifier, we were able to achieve 46% accuracy for classifying songs in each of the 13 genre classes. The following figure is a normalized confusion matrix for our Decision Tree classifier. 
+![RF Confusion Matrix Original](images/rf_cm.png)
+
+We noticed that rather than having high values along the diagonal, as we would have liked, we had a rather high number of songs being classified as Rock regardless of the true genre. As mentioned in our Dataset Exploration section, our dataset is heavily skewed towards Rock songs. Thus, our normalized confusion matrix for the Random Forest classifier also classifies most songs as Rock songs. 
+
+#### _Balanced Dataset_
+We tried running the model again after balancing our dataset. Using a Random Forest classifier with the balanced dataset, we were able to achieve 30% accuracy for classifying songs in each of the 13 genre classes. Again, notice that the accuracy of our Random Forest classifier has gone down from 46% to 30%. Similar to Logistic Regression and Decision Tree, we believe the results from the Random Forest classifier are largely due to the fact that the classifier predicted most songs were Rock songs and ended up being correct since an overwhelming proportion of the songs were Rock songs. The following figure is a normalized confusion matrix for our Random Forest classifier with the balanced dataset. 
+![RF Confusion Matrix Balanced](images/rf_cm_balanced.png)
+
+Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. In contrast to the confusion matrices for Logistic Regression and Decision Tree, however, it is harder to see pairs of genres that are classified as similar from the results of our Random Forest classifier.
+
+
+## Unsupervised Task Exploration 
 The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the musiXmatch dataset and the original dataset we created from the MSD, Tagtraum labels, and Spotify features. From there, a dictionary was created with the word and word count listed for each track_id. Below is an illustration:
 
 ![Dictionary](images/dictionary.jpg)
@@ -165,7 +196,7 @@ The other issue is that even if we find songs with a high percent overlap with t
 
 A possible solution is to examine natural language processing techniques where the order of the words does not matter. We could use some kind of n-gram methods for example (i.e. like skip-gram, syntactic n-grams, etc). [[8]](#references)
 
-#### Final Updates 
+#### **Final Updates**
 
 ### Lyrics-Based Approach 
 

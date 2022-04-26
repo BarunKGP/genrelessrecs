@@ -158,19 +158,48 @@ As exhibited in the prior supervised models, our accuracy suffered when balancin
 
 ### Gaussian Naive Bayes Classfier
 
+Another model we had trained and cursorily tuned was a GNB model. Regarding the performance the main interesting artifact was that although for our unbalanced dataset there was some reseblence of overly classifying songs as the dominant class "Rock," the model was much more robust in learning classification predictions for classes that were in the minority. The following is the confusion matrix when trainined on the unbalanced dataset.
+
 ![CM_GNB_Unbal](images/Image_CM_GNB_Unbal.png)
 <br />
 
+The accuracy we achieved with this classifier for the unbalanced dataset was .377. In comparison to other classifiers (e.g. NN, GNB), we see lower performance in this metric. However interestingly we se that the precision score was higher when compared to other models training on the unbalanced dataset. This indicates that this model displayed less false positives, resulting in an overall F1 Score (.381) comparable to other models after the balancing of the training data. Our recall score was somewhat less than models that simply learned to overly predict the dominant class given our models robustness to minority labels.
+
+For our balanced training data, we erved the following Confusion Matrix:
+
 ![CM_GNB_Bal](images/Image_CM_GNB_Bal.png)
 <br />
+
+Our accuracy (.272) suffered significantly while our precision (.441) similar to other models had gone up. However we not that this increase was not as drastic as other models. We can infer this is due to our GNBs initial success in this metric, the balancing of data's improvement was less notable. As with the other models, for the balanced dataset we observed our F1 Score (.252) decrease due to reduction of True Positives identified by our model - seen by the reduction of our recall metric as well. We can attribute our models partial success to the preprocessing step of utilzing PCA components as features - ensuring that the Naive Bayes assumption holds for our model's success.
+
 ### Supper Vector Machines Classfier
+
+Our group implemented SVMs as another model in our survey of supervised algorithms. The primarily focus for tuning this model was the regularization that we would utilize as well as the kernel method we would use (allowing our model to learn non-linearities). Similar to other models, we utilized cross validation to conduct grid search - evaluating validation performance for values of our regularizaiton parameter from 10^-3 to 10^3, an indicator of how large we want our margins. For lower values of C we prefer simpler SVM models and the opposite for higher values. Additionally we utilzed cross validation and determined the Radial Basis Function (RBF) Kernel as the most promising.
+
+Here is the Confusion Matrix that we observed when training on Unbalanced data:
 
 ![CM_SVM_Unbal](images/Image_CM_SVM_Unbal.png)
 <br />
 
+Here is the Confusion Matrix that we observed when training on our Balanced dataset.
 ![CM_SVM_Bal](images/Image_CM_SVM_Bal.png)
 <br />
 
+
+| Classifier    | Accuracy | Precision | Recall | F1 Score |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| Logistic Regression Classifier (Original)      | 0.465 |0.363|0.464|0.363|
+| Logistic Regression Classifier (Balanced)   | 0.304        |0.275|0.307|0.276|
+| Decision Tree Classifier (Original)   | 0.314        |0.319|0.314|0.316|
+| Decision Tree Classifier (Balanced)   | 0.205        |0.200|0.198|0.199|
+| Random Forest Classifier (Original)   | 0.468        |0.396|0.468|0.395|
+| Random Forest Classifier (Balanced)   | 0.309        |0.288|0.309|0.294|
+| Neural Network Classifier (Original) | 0.488        | 0.376 | 0.488 | 0.392 |
+| Neural Network Classifier (Balanced) | 0.386        | 0.446 | 0.386 | 0.381 |
+| Gaussian Naive Bayes (Original) | 0.377 | 0.421 | 0.377 | 0.381 |
+| Gaussian Naive Bayes (Balanced)| 0.272 | 0.441 | 0.273 | 0.252 |
+| SVMs Classifier (Original) | 0.481 | 0.347 | 0.482 | 0.365 |
+| SVMs Classifier (Balanced) | 0.387 | 0.427 | 0.387 | 0.364 |
 ### Random Forest Classifier
 
 #### _Original Dataset_

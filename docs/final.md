@@ -140,6 +140,8 @@ After tuning our parameters using the mentioned method, we then trained our chos
 ![Training Loss Over Epochs](images/Image_Training_Loss_Over_Epochs.png)
 <br />
 
+#### **Final Updates**
+
 For our evaluation metrics to compare with success of other models, we use accuracy, precision, recall, and F1-score (given the nature of our dataset, accuracy will not hold as an all-encompassing metric). For the original imbalanced dataset, our model classifies the correct genre with accuracy 48.828%. In comparison, a naive approach of predicting all genres as "Rock," would provide an accuracy of about 40%. The precision score, recall score and F1 score were calculated to be 0.376, 0.488, and 0.392 respectively. Below is the normalized Confusion Matrix when training on the unbalanced dataset:
 
 ![CM_NN_Unbal](images/Image_CM_NN_Unbal.png)
@@ -154,12 +156,20 @@ As exhibited in the prior supervised models, our accuracy suffered when balancin
 
 #### **Final Updates**
 
-### Neural Network Classifier
-
 ### Gaussian Naive Bayes Classfier
 
+![CM_GNB_Unbal](images/Image_CM_GNB_Unbal.png)
+<br />
+
+![CM_GNB_Bal](images/Image_CM_GNB_Bal.png)
+<br />
 ### Supper Vector Machines Classfier
 
+![CM_SVM_Unbal](images/Image_CM_SVM_Unbal.png)
+<br />
+
+![CM_SVM_Bal](images/Image_CM_SVM_Bal.png)
+<br />
 
 ### Random Forest Classifier
 

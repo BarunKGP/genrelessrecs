@@ -91,6 +91,8 @@ Also shown below is an interactive plot for PCA with 2 components. It shows the 
 | SVMs Classifier (Balanced) | 0.387 | 0.427 | 0.387 | 0.364 |
 
 ### Original vs. Balanced Dataset Results
+#### **Final Updates**
+
 ![original_vs_balanced](images/original_vs_balanced.png)
 
 Overall, we see the highest accuracy from our original Neural Network model and the highest F1 score from our original Random Forest model. Additionally, we can see higher values for all 4 metrics in our original dataset over our balanced dataset. In the future, we are interested in finding other ways of balancing our dataset, such as using focal loss.
@@ -275,7 +277,7 @@ The following pie charts show the distribution of genres in each of the 5 cluste
 ![K Means](images/kmeans.png)
 
 
-### Gaussian Mixture Model
+#### Gaussian Mixture Model
 The following pie charts show the distribution of genres in each of the 5 clusters from our GMM clustering. Notice the labels for the purity of each of these clusters, ranging from 12.2% to 21.1% purity. In K Means and GMM, you can see that Punk and Metal were highly clustered together, as were Country and Folk. These pairings are expected since these genres are highly related.
 ![GMM](images/gmm.png)
 

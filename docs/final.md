@@ -191,7 +191,7 @@ Note that the 2nd case is not genre-constrained. The same song (Case 1) and set 
 
 For the word2vec skip-gram model, we used the first 80% of the data to train the model and used the latter 20% as our test set. The different words have their own respective word representations. Therefore, we sum across each word contained in the bag of words (including repeats) to create a vector representation of the entire song. 
 
-From the test set, the algorithm picked out a random song. Then, it compared the chosen song against all of the other songs that are from a different genre using cosine distance. The top ten recommendations and the single recommendation are given based on shortest distance. 
+From the test set, the algorithm picked out a random song. Then, it compared the chosen song against all of the other songs that are from a different genre. Cosine distance was used as our similarity metric, where the smalleer the value, the higher the similarity is between the two entities. The top ten recommendations and the single recommendation are given based on shortest distance. 
 
 Case 1 - Word2Vec: 
 

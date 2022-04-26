@@ -9,7 +9,7 @@ We propose an approach where we use features that aren't strongly correlated to 
 
 In completing these two goals, we can still provide a relevant recommendation while fostering the exploration of new genres.
 
-## Dataset Collection
+## Dataset Collection[dc]
 We first collected all 1,000,000 track IDs and song IDs from the [Million Song Dataset](http://millionsongdataset.com/) track_metadata.db file. From there, we were able to find the genre labels for 280,831 of these songs by using the [tagtraum annotation for the Million Song Dataset](https://www.tagtraum.com/msd_genre_datasets.html). We then removed the songs from our dataset that did not contain genre labels. 
 
 To get the features for each song, we utilized the [Spotify API](https://developer.spotify.com/documentation/web-api/). First, we had to find the Spotify IDs that corresponded to the track IDs and song IDs that we collected from the Million Song Dataset. We were able to do this using [Acoustic Brainz Lab's Million Song Dataset Echo Nest mapping archive](https://labs.acousticbrainz.org/million-song-dataset-echonest-archive/). We were able to find corresponding Spotify IDs for 210,475 of our 280,831 datapoints. We then removed the songs which did not have a corresponding Spotify ID. 
@@ -231,8 +231,41 @@ Recommendation: TRABMMM128F429199D
 
 Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared toward word significance, it is not all that surprising that the recommendations from the two models are completely different from one another. Judging which one is "better" depends perhaps on the users' preferences. If they care that the two songs have a similar set of words with similar frequencies, then Word2Vec would be the more appropriate approach. Otherwise, if they want the songs to have similar enough lyrics but also hold the similar amount of relevance to their respective genres, then the TF-IDF method is more effective. 
 
+## Genreless Music Recommendation System
+In the final phase of the project, we decided to build a music recommendation system. As stated in our proposal, we wanted to devise a system that recommends similar songs irrespective of genre. Our hypothesis was that users would like songs that are similar to the songs they like. Genre does not play a very important role. In fact, all our exploratory algorithms showed that the audio features have little correlation with genre, which explains why predicting genre using these features yields poor results. Compared to audio features such as acousticness, energy, tempo, valence, etc., genre is a highly subjective and loose categorical feature. Songs in different genres may end up being closer to one another (with respect to their audio features) and our hypothesis was that users would prefer to listen to these similar songs even if they were in a different genre.
+
+We used a content-based recommendation system where we take song inputs from the user, find the mean vector of those songs and then recommend songs that are closest to that mean vector. There are other recommendation systems such as collaborative filtering but since we did not have any user data (such as ratings or reviews) we decided to use the content-based approach. Following is a step-by-step description of the algorithm:
+1. Take song inputs from the user. The user may specify as many songs as they like in the form of a JSON list with the following keys:
+    - Song name
+    - Release year
+    - Spotify track ID
+
+Any song present on Spotify may be entered as input. However, our recommendations are limited to the songs available in our final cleaned Million Song Dataset (~210k tracks).
+
+2. For the input list, find the mean vector. This vector is basically a mean of the audio features of the songs (using the features described in [Dataset Exploration](#dataset-exploration)). We call this the _song center_.
+3. Find the n-closest datapoints to the song center and recommend the songs corresponding to those datapoints to the user. By default, we have `n = 10` but it can be passed as a parameter to our recommendation function to tweak the number of recommendations as desired. To compute the _closeness_ of the datapoints, we used the cosine distance, which can be defined as :
+$$ distance(u,v) = 1 - \frac{u \cdot v}{||u|| ||v||} = 1 - \cos \theta$$
+We used the `cdist` function from the `scipy` library to compute this. 
+
+4. Return the recommendations to the user formatted as song name and artist.
+
+### Output and observations
+We observed our recommendation system to perform fairly well. Our team members tested out the recommendation system with a variety of inputs and the results were deemed relevant and satisfactory. In general, we observed that the recommended songs were quite similar in audio features to the songs provided as inputs, which was expected of course. So, if an user were to input a list of songs with high-tempo and lots of guitar and drum riffs, they would receive recommendations for songs with a similar high energy and heavy usage guitars and drums. Using a list of more acoustic songs resulted in acoustic recommendations. If the input songs had only music but no vocals, the output recommendations would also be musical pieces with little to no vocals. One interesting case was when we used a long 30-min song as an input. The recommendation system returned another song which was 20-min long, indicating that the system was able to learn certain patterns from the input song, identify similar patterns from the dataset and recommend similar songs to the users.
+
+Included below is a screenshot which shows the recommendations for a user with typically 'rock' songs as input. As you can see, the recommendations are similar to the input songs (You can listen to these songs on Spotify to verify!)
+
+To the best of our knowledge, there was no significant effect of the number of songs provided as input.
+
 ## Challenges faced
-The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization and balancing of the dataset to make it more accurate. However, balancing results in discarding a lot of information. Hence, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
+1. The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization and balancing of the dataset to make it more accurate. However, balancing results in discarding a lot of information. Hence, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
+2. Our recommendation system is limited by the number of songs available in the dataset. This means we were unable to recommend songs that might have been more relevant but were not present in the dataset. There was no way to counter this problem and this is a known flaw in the system that we recognize.
+3. We did not detect any effect of the number of songs provided as input to the recommendation system. However, since we chose to simply average the audio features of the input song list, it is possible that in the case when the inputs are widely different, the average might point to a completely different song, which is not very accurate. Simply put, our system does not have a way to fine-tune the recommendations based on the input songs. For instance, if a user chooses as input a heavy drum-based song and another soft instrumental song, their average vector might be a song with few vocals and fewer drumbeats (i.e., an average of the two inputs). This new song might not be very relevant for the user, who might intuituvely have expected the system to provide more songs that were similar to his taste (i.e., more instrumental songs and more drum-based songs, but not something like a mix of both).
+
+## Future scope
+While we are pleased with our project so far, we also had a few ideas on how we could improve certain parts. While time constraints prevented us from exploring these further, we believe these are steps that could be taken to improve the project's performance in the future.
+
+1. One potential improvement is to balance the dataset so that our algorithms and recommendations are not skewed by the overwhelming majority of rock songs in the dataset. One possible way to do this might be by exploring relevant metrics such as focal loss.
+2. Another potential improvement is to use a more sophisticated recommendation system that can preserve the individuality of the input. This would solve the problem of averaging the audio features of the input songs. Perhaps we could explore different weighting strategies for each of the inputs if they differ widely from each other, or we could have a threshold and if the input songs differ by more than that threshold, we could consider that a separate category and recommend songs from that category to the user.
 
 ## References
 [1] J. Kristensen, “The rise of the genre-less music fan,” RSS, 22-Mar-2021. [Online]. Available: https://www.audiencerepublic.com/blog/the-rise-of-the-genre-less-music-fan. [Accessed: 21-Feb-2022].

@@ -243,16 +243,26 @@ We used a content-based recommendation system where we take song inputs from the
 Any song present on Spotify may be entered as input. However, our recommendations are limited to the songs available in our final cleaned Million Song Dataset (~210k tracks).
 
 2. For the input list, find the mean vector. This vector is basically a mean of the audio features of the songs (using the features described in [Dataset Exploration](#dataset-exploration)). We call this the _song center_.
-3. Find the n-closest datapoints to the song center and recommend the songs corresponding to those datapoints to the user. By default, we have `n = 10` but it can be passed as a parameter to our recommendation function to tweak the number of recommendations as desired. To compute the _closeness_ of the datapoints, we used the cosine distance, which can be defined as :
+3. Find the n-closest datapoints to the song center and recommend the songs corresponding to those datapoints to the user. By default, we recommend `n_songs = 10` but it can be passed as a parameter to our recommendation function to tweak the number of recommendations as desired. To compute the _closeness_ of the datapoints, we used the cosine distance, which can be defined as :
 $$ distance(u,v) = 1 - \frac{u \cdot v}{||u|| ||v||} = 1 - \cos \theta$$
 We used the `cdist` function from the `scipy` library to compute this. 
 
-4. Return the recommendations to the user formatted as song name and artist.
+4. Return the recommendations to the user formatted as song name and artist. We ensure that the recommendations do not contain any songs from the input list.
 
 ### Output and observations
 We observed our recommendation system to perform fairly well. Our team members tested out the recommendation system with a variety of inputs and the results were deemed relevant and satisfactory. In general, we observed that the recommended songs were quite similar in audio features to the songs provided as inputs, which was expected of course. So, if an user were to input a list of songs with high-tempo and lots of guitar and drum riffs, they would receive recommendations for songs with a similar high energy and heavy usage guitars and drums. Using a list of more acoustic songs resulted in acoustic recommendations. If the input songs had only music but no vocals, the output recommendations would also be musical pieces with little to no vocals. One interesting case was when we used a long 30-min song as an input. The recommendation system returned another song which was 20-min long, indicating that the system was able to learn certain patterns from the input song, identify similar patterns from the dataset and recommend similar songs to the users.
 
-Included below is a screenshot which shows the recommendations for a user with typically 'rock' songs as input. As you can see, the recommendations are similar to the input songs (You can listen to these songs on Spotify to verify!)
+Included below are two screenshots which shows the recommendations for users with different tastes in songs as input. As you can see, the recommendations are similar to the input songs (You can listen to these songs on Spotify to verify!)
+
+<figure>
+    <img src="images/rec_output_1.png" alt="Recommendation-1"/>
+    <figcaption>Recommendation for a user with who enjoys rock and similar kinds of music. The recommendations reflect an average of the audio features of the inputs.</figcaption>
+</figure>
+
+<figure>
+    <img src="images/rec_output_2.png" alt= "Recommendation-2"/>
+    <figcaption>Recommendation for a user who only provides one song as input. <i>n_songs</i> has also been chosen as 5 for this example.</figcaption>
+</figure>
 
 To the best of our knowledge, there was no significant effect of the number of songs provided as input.
 

@@ -71,7 +71,7 @@ Also shown below is an interactive plot for PCA with 2 components. It shows the 
     <iframe src="https://datapane.com/reports/O7vEyl3/pca-interactive-plot/embed/" width="100%" height="540px" style="border: none;">IFrame not supported</iframe>
 </p>
 
-## Supervised Methods, Results, and Discussion
+## Supervised Learning Task: Genre Classification
 
 ### Overall Results
 
@@ -176,7 +176,7 @@ We tried running the model again after balancing our dataset. Using a Random For
 Notice that now, the values on the diagonal are much higher, signifying the model predicting the correct genre more often. In contrast to the confusion matrices for Logistic Regression and Decision Tree, however, it is harder to see pairs of genres that are classified as similar from the results of our Random Forest classifier.
 
 
-## Unsupervised Task Exploration 
+## Unsupervised Learning Task: Song Clustering 
 The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained song lyrics in a bag of words format. We analyzed songs that were located both in the musiXmatch dataset and the original dataset we created from the MSD, Tagtraum labels, and Spotify features. From there, a dictionary was created with the word and word count listed for each track_id. Below is an illustration:
 
 ![Dictionary](images/dictionary.jpg)

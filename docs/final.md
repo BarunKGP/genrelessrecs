@@ -142,14 +142,14 @@ The [MusixMatch Dataset](http://millionsongdataset.com/musixmatch/) contained so
 
 ![Dictionary](images/dictionary.jpg)
 
-The dictionary contained 93,355 unique track_ids. From there, three random songs from our dictionary were chosen. Then, we compared the percent overlap between the unique words contained in the random song and those from another song in the dictionary. (Note that we only consider the individual words themselves, not their frequency of occurrence in the songs.) Percent overlap is calculated by comparing the number of shared words over the number of words documented in the random song. For example, if the two songs had six words in common and the random song had a total of ten unique words, then the percent overlap would be 60%, or 0.6. 
+The dictionary contained 93,356 unique track_ids. From there, three random songs from our dictionary were chosen. Then, we compared the percent overlap between the unique words contained in the random song and those from another song in the dictionary. (Note that we only consider the individual words themselves, not their frequency of occurrence in the songs.) Percent overlap is calculated by comparing the number of shared words over the number of words documented in the random song. For example, if the two songs had six words in common and the random song had a total of ten unique words, then the percent overlap would be 60%, or 0.6. 
 
 We then decided to compare percent overlap values between songs that belong to the same/a different genre as/than the random song.  Here are our results below: 
 
 
 ![Same Genre](images/same_genre.png)
 
-![Different Genre](images/diff_genre.png)
+![Different Genre](images/different_genre.png)
 
 ## Challenges faced
 The dataset is heavily skewed towards Rock songs, which are the overwhelming majority of data points in the dataset. This makes it difficult to accurately predict the genre of a song and we had to perform standardization and balancing of the dataset to make it more accurate. However, balancing results in discarding a lot of information. Hence, the sheer number of Rock songs in the dataset still represents a challenge for analysis.
@@ -171,6 +171,71 @@ The other issue is that even if we find songs with a high percent overlap with t
 
 A possible solution is to examine natural language processing techniques where the order of the words does not matter. We could use some kind of n-gram methods for example (i.e. like skip-gram, syntactic n-grams, etc). [[8]](#references)
 
+## Final Updates 
+
+### Lyrics-Based Approach 
+
+#### Preprocessing 
+
+The dataset described in the unsupervised task exploration section was used for the lyrics-based approach. Nevertheless, we did not find certain words such as articles and pronouns to be that significant in our analysis. Most every song would likely contain these words and the words themselves do not carry a lot of meaning. Therefore, we filtered out each of the songs' bag of words using nltk's stop words. 
+
+#### Clustering 
+
+In addition to seeing if song features correlated with genre, we also checked to see if a distinctive lyric-genre correlation existed. The goal of this analysis was to see if songs grouped together by similarity in lyrics can be mapped to the same genre. We used KMeans and created 15 clusters since we have 15 genres. Our results show that there does not appear to be a distinctive correlation. Therefore, this is an indicator that we can easily match users to a song from a different genre using similar lyrics.
+
+![Lyrics-Based Cluter](images/image_lyrics_cluster.png)
+
+#### Word2Vec Skip-Gram & TF-IDF 
+
+We decided to generate song recommendations based on two different models: Word2Vec and TF-IDF. Each model was tested for two different cases.
+
+Case 1: Generate a random song and give ten song recommendations from a different genre
+
+Case 2: Generate ten random songs and recommend a song
+
+Note that the 2nd case is not genre-constrained. The same song (Case 1) and set of ten songs (Case 2) are tested against both models. 
+
+For the word2vec skip-gram model, we used the first 80% of the data to train the model and used the latter 20% as our test set. The different words have their own respective word representations. Therefore, we sum across each word contained in the bag of words (including repeats) to create a vector representation of the entire song. 
+
+From the test set, the algorithm picked out a random song. Then, it compared the chosen song against all of the other songs that are from a different genre using cosine distance. The top ten recommendations and the single recommendation are given based on shortest distance. 
+
+Case 1 - Word2Vec: 
+
+Recommendation 1 : TRSPBAV128F427786A
+Recommendation 2 : TRQMQTZ128F92DC10A
+Recommendation 3 : TRWWJDX128F42818C7
+Recommendation 4 : TRDMFZZ128F423D4B1
+Recommendation 5 : TROLFDU12903CBDF36
+Recommendation 6 : TRMJKMB12903CCDC79
+Recommendation 7 : TRRWMRA128F92E3989
+Recommendation 8 : TRIUNNK12903CCEAD0
+Recommendation 9 : TRGIWUB128F1466D61
+Recommendation 10 : TREFIVS12903D03ECF
+
+Case 2 - Word2Vec 
+
+Recommendation: TRQNHFG128F932047D
+
+Our TF-IDF model calculates a word significance weight for each unique word in the song based on 1) how frequently an the word shows up in the song and 2) how many songs its corresponding genre contain that lyric.Traditional TF-IDF are typically framed across the corpus as a whole, not the category to which the song belongs. Our goal was to find (different genres) recommended song(s) that had similar word significance weights as our random song(s). Like Word2Vec, we also used the cosine similarity metrics to compare songs. Below are the recommendations for each case.
+
+Case 1 - TF-IDF
+
+Recommendation 1 : TRDXRVT128E078EA86
+Recommendation 2 : TRGDLQC128F4270523
+Recommendation 3 : TRJSRWA128F92CD64C
+Recommendation 4 : TRSHBDG128F1493B34
+Recommendation 5 : TRRKVTG128F4266634
+Recommendation 6 : TRJSJXD128F1465C5E
+Recommendation 7 : TRULRPW128F92E7190
+Recommendation 8 : TRUEHQP128F42647EF
+Recommendation 9 : TRVSWYO128E07963B5
+Recommendation 10 : TRUJQWL128F4293557
+
+Case 2 - TF-IDF
+
+Recommendation: TRABMMM128F429199D
+
+Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared toward word significance, it is not all that surprising that the recommendations from the two models are completely different from one another. Judging which one is "better" depends perhaps on the users' preferences. If they care that the two songs have a similar set of words with similar frequencies, then Word2Vec would be the more appropriate approach. Otherwise, if they want the songs to have similar enough lyrics but also hold the similar amount of relevance to their respective genres, then the TF-IDF method is more effective. 
 
 ## References
 [1] J. Kristensen, “The rise of the genre-less music fan,” RSS, 22-Mar-2021. [Online]. Available: https://www.audiencerepublic.com/blog/the-rise-of-the-genre-less-music-fan. [Accessed: 21-Feb-2022].

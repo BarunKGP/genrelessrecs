@@ -381,8 +381,7 @@ We used a content-based recommendation system where we take song inputs from the
 
 2. For the input list, find the mean vector. This vector is basically a mean of the audio features of the songs (using the features described in [Dataset Collection](#dataset-collection)). We call this the _song center_.
 3. Find the n-closest datapoints to the song center and recommend the songs corresponding to those datapoints to the user. By default, we recommend `n_songs = 10` but it can be passed as a parameter to our recommendation function to tweak the number of recommendations as desired. To compute the _closeness_ of the datapoints, we used the cosine distance, which can be defined as :
-![Cosine Distance](images/cosine_distance.png)
-<!-- $$ distance(u,v) = 1 - \frac{u \cdot v}{||u|| ||v||} = 1 - \cos \theta$$ -->
+![Cosine Distance](images/cosine_distance.png)\\
 We used the `cdist` function from the `scipy` library to compute this. 
 
 4. Return the recommendations to the user formatted as song name and artist. We ensure that the recommendations do not contain any songs from the input list.

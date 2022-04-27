@@ -324,7 +324,7 @@ Unbalanced
 ![Sil_15](images/Image_Sil_Kmean15.png)
 <br />
 
-For visualization purposes, we see the Silhouette plot for a clustering using 5 centers and 15 centers. We consider an average Silhouette score as good for a given model depending on how close 1 it is (a normalized metric of the difference between the average intracluster distance and the mean nearest cluster distance).
+For visualization purposes, we see the Silhouette plot for a clustering using 5 centers and 15 centers. We consider an average Silhouette score as good for a given model depending on how close 1 it is (a normalized metric of the difference between the average intracluster distance and the mean nearest cluster distance). We additionally prefer the thickness associated to each cluster (indicating the proportion of points associated to each cluster) to be relatively uniform. We can see that there is a high degree of variation with respect to the clustering using 15 centers, suggesting the optimal number of clusters suggested by the elbow method is not optimal for this new metric.
 
 Balanced
 <br />
@@ -333,11 +333,17 @@ Balanced
 ![Sil_15_bal](images/Image_Sil_Kmean15_Bal.png)
 <br />
 
+For the balanced dataset, the average score stayed relatively same for each cluster. An interesting thing to note however is the proportion of songs had been redistributed and looked to be much more uniform for the clustering with 5 centers (apart from the final cluster). The visual also helps give insight as to how certain points severely penalizes and rewards the average score depending on the placement within its associated cluster and with relation to other clusters.
+
 ##### External Measures : FMS Score, V-Measure Score, Rand Score
 Unbalanced
 <br />
 ![Ext_eval](images/Image_Cluster_Comparison_Eval.png)
 <br />
+
+To utilize having ground truth labels for each associated song, we saw that utilizing external measures might be a fruitful source of exploration. To reduce scope, we focused on 3 pairwise metrics, FMS Score, V-Measure Score and Rand Score. FMS Score we thought to be useful due to its integration of pairwise precision and recall (measuring the geometric mean of the two). The Rand Score we thought we would be similarly useful as it helps visualize the true positive and true negatives produced among pairs. Lastly the V-Measure Score was another metric that may be useful given the information it gives regarding the homogenity (the extent to which each cluster is comprised of a single or few labels) and completeness (the extent that all points associate to a class is fitted in the same cluster). 
+
+For good clustering we expecta V-Measure approaching 1, a Rand score close to 1 and FMS score close to 1.
 
 Balanced
 <br />

@@ -298,18 +298,23 @@ Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared
 
 #### Clustering Evaluation
 
-After choosing Kmeans as the cluster algorithm 
+For our unsupervised data-exploration, we decided to cluster using KMeans and GMM. To decide the number of clusters we visualized various clustering evaluations to see how "good" our clustering was. For exploring the selection of number of clusters, we decided to train multiple KMeans (GMM excluded to reduce scope) and evaluated different K-values and provided associated visuals when clustering on the balanced and unbalanced dataset.
 
 ##### Elbow Method
+
 Unbalanced
 <br />
 ![Elb_Unbal](images/Image_Kmeans_Elbow_Distortion.png)
 <br />
 
+For the unbalanced dataset, we interestingly see that the optimal number of clusters was 15, the number of genres we have in our dataset. Intuitively, we also see that as the number of clusters increase, so does the model fitting time.
+
 Balanced
 <br />
 ![Elb_Bal](images/Image_Kmeans_Elbow_Distortion_Bal.png)
 <br />
+
+For the balanced dataset, we the optimal number of clusters being similar to that of the unbalanced dataset, 16. We see however that the distortion score, our objective function used to compare models is much higher. In brevity the distortion score is defined as the sum of squared distances of points to their associated center. We assume that this score is lower for the unbalanced dataset since the density of datapoints, or songs, associated to Rock must be quite high - skewing the overall average distortion score among other clusters. 
 
 ##### Silhouette Coefficient 
 Unbalanced
@@ -318,6 +323,8 @@ Unbalanced
 <br />
 ![Sil_15](images/Image_Sil_Kmean15.png)
 <br />
+
+For visualization purposes, we see the Silhouette plot for a clustering using 5 centers and 15 centers. We consider an average Silhouette score as good for a given model depending on how close 1 it is (a normalized metric of the difference between the average intracluster distance and the mean nearest cluster distance).
 
 Balanced
 <br />
@@ -339,6 +346,7 @@ Balanced
 
 #### Elbow Method
 Using the Elbow Method, we decided to use 5 clusters for KMeans and GMM. We were interested in this result from the Elbow Method since we have prior knowledge of the dataset fitting into 15 categories (the genre labels). However, we decided to use 5 clusters instead of 15 to further uncover relationships between genres and see if we can identify which genres the models groups together. 
+
 ![Elbow Method](images/elbow_method.png)
 
 #### K Means

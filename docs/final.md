@@ -298,7 +298,7 @@ Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared
 
 #### Clustering Evaluation
 
-For our unsupervised data-exploration, we decided to cluster using KMeans and GMM. To decide the number of clusters we visualized various clustering evaluations to see how "good" our clustering was. For exploring the selection of number of clusters, we decided to train multiple KMeans (GMM excluded to reduce scope) and evaluated different K-values and provided associated visuals when clustering on the balanced and unbalanced dataset.
+For our unsupervised data-exploration, we decided to cluster using KMeans and GMM. To decide the number of clusters we visualized various clustering evaluations to see how "good" our clustering was. For exploring the selection of number of clusters, we decided to train multiple KMeans (GMM excluded to reduce scope) and evaluated different K-values and provided associated visuals when clustering on the balanced and unbalanced dataset. For majority of our metrics, we compare clusters of size 2-30 for robustness. Finally although the Elbow Method suggested 15 was the optimal number of clusters for the algorithm (matching the 15 genre categories we had as ground truths), we prefered too use 5 clusters as suggested by the Silhouette method to further uncover relationships between genres and see if we can identify which genres the models groups together. The external clustering metrics, although interesting in exploration, did little in suggesting an optimal cluster for the balanced and unbalanced dataset.  
 
 ##### Elbow Method
 
@@ -345,19 +345,14 @@ To utilize having ground truth labels for each associated song, we saw that util
 
 For good clustering we expecta V-Measure approaching 1, a Rand score close to 1 and FMS score close to 1.
 
-For the clustering on the unbalanced dataset, we can see first that the Rand Score seems to arbitrarily improve as the number of clusters increases. Interestingly we see that the V-Measure score seems to remain constant among the clusterings. We hypothesize this as to the trade off of improving homogenity as we increase the number of clusters (we can arbitrarily create groups that encompases subclusters of labels) and worsening the completeness (points associated to a particular label are more likely to be partitioned.
+For the clustering on the unbalanced dataset, we can see first that the Rand Score seems to arbitrarily improve as the number of clusters increases. Interestingly we see that the V-Measure score seems to remain constant among the clusterings. We hypothesize this as to the trade off of improving homogenity as we increase the number of clusters (we can arbitrarily create groups that encompases subclusters of labels) and worsening the completeness (points associated to a particular label are more likely to be partitioned. Lastly for the FMS Score we see that this metric worsens as we increase the number of clusters.
 
 Balanced
 <br />
 ![Ext_eval_bal](images/Image_Cluster_Comparison_Eval_Bal.png)
 <br />
 
-Similar for the case of clustering with the unbalanced dataset, we can see that the Rand Score seems to arbitrarily improve as the number of clusters increases. We additionally see that the V-Measure score tends to stay consistent as we increase the number of clusterings.
-
-#### Elbow Method
-Using the Elbow Method, we decided to use 5 clusters for KMeans and GMM. We were interested in this result from the Elbow Method since we have prior knowledge of the dataset fitting into 15 categories (the genre labels). However, we decided to use 5 clusters instead of 15 to further uncover relationships between genres and see if we can identify which genres the models groups together. 
-
-![Elbow Method](images/elbow_method.png)
+Similar for the case of clustering with the unbalanced dataset, we can see that the Rand Score seems to arbitrarily improve as the number of clusters increases. We additionally see that the V-Measure score tends to stay consistent as we increase the number of clusterings. Lastly, we again see that the FMS score worsens as we increase the number of clusters.
 
 #### K Means
 The following pie charts show the distribution of genres in each of the 5 clusters from our K Means clustering. Notice the labels for the purity of each of these clusters, ranging from 10.9% to 23.4% purity.
@@ -381,7 +376,7 @@ We used a content-based recommendation system where we take song inputs from the
 
 2. For the input list, find the mean vector. This vector is basically a mean of the audio features of the songs (using the features described in [Dataset Collection](#dataset-collection)). We call this the _song center_.
 3. Find the n-closest datapoints to the song center and recommend the songs corresponding to those datapoints to the user. By default, we recommend `n_songs = 10` but it can be passed as a parameter to our recommendation function to tweak the number of recommendations as desired. To compute the _closeness_ of the datapoints, we used the cosine distance, which can be defined as :
-![Cosine Distance](images/cosine_distance.png)\\
+$$ distance(u,v) = 1 - \frac{u \cdot v}{||u|| ||v||} = 1 - \cos \theta$$
 We used the `cdist` function from the `scipy` library to compute this. 
 
 4. Return the recommendations to the user formatted as song name and artist. We ensure that the recommendations do not contain any songs from the input list.

@@ -345,10 +345,14 @@ To utilize having ground truth labels for each associated song, we saw that util
 
 For good clustering we expecta V-Measure approaching 1, a Rand score close to 1 and FMS score close to 1.
 
+For the clustering on the unbalanced dataset, we can see first that the Rand Score seems to arbitrarily improve as the number of clusters increases. Interestingly we see that the V-Measure score seems to remain constant among the clusterings. We hypothesize this as to the trade off of improving homogenity as we increase the number of clusters (we can arbitrarily create groups that encompases subclusters of labels) and worsening the completeness (points associated to a particular label are more likely to be partitioned.
+
 Balanced
 <br />
 ![Ext_eval_bal](images/Image_Cluster_Comparison_Eval_Bal.png)
 <br />
+
+Similar for the case of clustering with the unbalanced dataset, we can see that the Rand Score seems to arbitrarily improve as the number of clusters increases. We additionally see that the V-Measure score tends to stay consistent as we increase the number of clusterings.
 
 #### Elbow Method
 Using the Elbow Method, we decided to use 5 clusters for KMeans and GMM. We were interested in this result from the Elbow Method since we have prior knowledge of the dataset fitting into 15 categories (the genre labels). However, we decided to use 5 clusters instead of 15 to further uncover relationships between genres and see if we can identify which genres the models groups together. 

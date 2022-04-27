@@ -299,21 +299,25 @@ Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared
 #### Clustering Evaluation
 ##### Elbow Method
 Unbalanced
+<br />
 ![Elb_Unbal](images/Image_Kmeans_Elbow_Distortion.png)
 <br />
 
 Balanced
+<br />
 ![Elb_Bal](images/Image_Kmeans_Elbow_Distortion_Bal.png)
 <br />
 
 ##### Silhouette Coefficient 
 Unbalanced
+<br />
 ![Sil_5](images/Image_Sil_Kmeans5.png)
 <br />
 ![Sil_15](images/Image_Sil_Kmean15.png)
 <br />
 
 Balanced
+<br />
 ![Sil_5_bal](images/Image_Sil_Kmeans5_Bal.png)
 <br />
 ![Sil_15_bal](images/Image_Sil_Kmean15_Bal.png)
@@ -321,10 +325,12 @@ Balanced
 
 ##### External Measures : FMS Score, V-Measure Score, Rand Score
 Unbalanced
+<br />
 ![Ext_eval](images/Image_Cluster_Comparison_Eval.png)
 <br />
 
 Balanced
+<br />
 ![Ext_eval_bal](images/Image_Cluster_Comparison_Eval_Bal.png)
 <br />
 

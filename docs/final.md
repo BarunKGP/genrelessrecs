@@ -106,7 +106,7 @@ Using a Logistic Regression classifier, we were able to achieve 46% accuracy for
 We noticed that rather than having high values along the diagonal, as we would have liked, we had a rather high number of songs being classified as Rock regardless of the true genre. As mentioned in our Dataset Exploration section, our dataset is heavily skewed towards Rock songs. Thus, our normalized confusion matrix for the Logistic Regression classifier shows that most songs were classified as Rock songs. 
 
 #### _Balanced Dataset_
-To remedy the issue above, we balanced our dataset by finding the lowest genre count, which was 2,141 songs in the New Age genre, and using only that many songs from each genre; in doing so, we ensured an equal number of songs in each genre label. The resulting dataset had 2,141 songs for each of the 15 genres, so it had a total of 27,833 datapoints. 
+To remedy the issue above, we balanced our dataset by finding the lowest genre count, which was 2,141 songs in the New Age genre, and using only that many songs from each genre; in doing so, we ensured an equal number of songs in each genre label. The resulting dataset had 2,141 songs for each of the 15 genres, so it had a total of 32,115 datapoints. 
 
 Using a Logistic Regression classifier with the balanced dataset, we were able to achieve 30% accuracy for classifying songs in each of the 15 genre classes. Notice that the accuracy of our Logistic Regression classifier went down from 46% to 30%. Despite this loss, we believe our new results are better, as the initial 46% accuracy may have been largely due to the fact that the classifier predicted that most songs were Rock songs and ended up being fairly accurate since an overwhelming proportion of the songs were in fact Rock songs. Even with the lower accuracy, our model still performs better than guessing genre at random, which would be roughly 1/15 = 6.6% accuracy. The following figure is a normalized confusion matrix for our Logistic Regression classifier with the balanced dataset.
 ![LR Confusion Matrix Balanced](images/lr_cm_balanced.png)
@@ -298,7 +298,7 @@ Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared
 
 #### Clustering Evaluation
 
-For our unsupervised data-exploration, we decided to cluster using KMeans and GMM. To decide the number of clusters we visualized various clustering evaluations to see how "good" our clustering was. For exploring the selection of number of clusters, we decided to train multiple KMeans (GMM excluded to reduce scope) and evaluated different K-values and provided associated visuals when clustering on the balanced and unbalanced dataset. For majority of our metrics, we compare clusters of size 2-30 for robustness. Finally although the Elbow Method suggested 15 was the optimal number of clusters for the algorithm (matching the 15 genre categories we had as ground truths), we prefered too use 5 clusters as suggested by the Silhouette method to further uncover relationships between genres and see if we can identify which genres the models groups together. The external clustering metrics, although interesting in exploration, did little in suggesting an optimal cluster for the balanced and unbalanced dataset.  
+For our unsupervised data-exploration, we decided to cluster using K-Means and GMM. To decide the number of clusters we visualized various clustering evaluations to see how "good" our clustering was. For exploring the selection of number of clusters, we decided to train multiple K-Means (GMM excluded to reduce scope) and evaluated different K-values and provided associated visuals when clustering on the balanced and unbalanced dataset. For majority of our metrics, we compare clusters of size 2-30 for robustness. Finally although the Elbow Method suggested 15 was the optimal number of clusters for the algorithm (matching the 15 genre categories we had as ground truths), we prefered too use 5 clusters as suggested by the Silhouette method to further uncover relationships between genres and see if we can identify which genres the models groups together. The external clustering metrics, although interesting in exploration, did little in suggesting an optimal cluster for the balanced and unbalanced dataset.  
 
 ##### Elbow Method
 
@@ -354,13 +354,13 @@ Balanced
 
 Similar for the case of clustering with the unbalanced dataset, we can see that the Rand Score seems to arbitrarily improve as the number of clusters increases. We additionally see that the V-Measure score tends to stay consistent as we increase the number of clusterings. Lastly, we again see that the FMS score worsens as we increase the number of clusters.
 
-#### K Means
-The following pie charts show the distribution of genres in each of the 5 clusters from our K Means clustering. Notice the labels for the purity of each of these clusters, ranging from 10.9% to 23.4% purity.
+#### K-Means
+The following pie charts show the distribution of genres in each of the 5 clusters from our K-Means clustering. Notice the labels for the purity of each of these clusters, ranging from 10.9% to 23.4% purity.
 ![K Means](images/kmeans.png)
 
 
 #### Gaussian Mixture Model
-The following pie charts show the distribution of genres in each of the 5 clusters from our GMM clustering. Notice the labels for the purity of each of these clusters, ranging from 12.2% to 21.1% purity. In K Means and GMM, you can see that Punk and Metal were highly clustered together, as were Country and Folk. These pairings are expected since these genres are highly related.
+The following pie charts show the distribution of genres in each of the 5 clusters from our GMM clustering. Notice the labels for the purity of each of these clusters, ranging from 12.2% to 21.1% purity. In K-Means and GMM, you can see that Punk and Metal were highly clustered together, as were Country and Folk. These pairings are expected since these genres are highly related.
 ![GMM](images/gmm.png)
 
 

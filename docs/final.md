@@ -222,6 +222,8 @@ We then decided to compare percent overlap values between songs that belong to t
 
 ### Lyrics-Based Approach 
 
+#### Midterm update:
+
 A future direction to pursue is to consider applying natural language processing models to our bags of words. As mentioned earlier in the report, we calculated similarity between songs using percent overlap. Since our objective is to find songs with overlap in lyrics, we can ignore songs from the dictionary that have little to no percent overlap. The downside to this metric of course is that the word count does not influence the percent overlap calculation. Two songs can for example contain similar sets of unique words, but may not be similar at all in terms of word count across this commonality. 
 
 The other issue is that even if we find songs with a high percent overlap with the common words and there are similar word count values across, we do not know the order in which the words appear in each of the respective songs. 
@@ -229,8 +231,6 @@ The other issue is that even if we find songs with a high percent overlap with t
 A possible solution is to examine natural language processing techniques where the order of the words does not matter. We could use some kind of n-gram methods for example (i.e. like skip-gram, syntactic n-grams, etc). [[8]](#references)
 
 #### **Final Updates**
-
-### Lyrics-Based Approach 
 
 #### Preprocessing 
 

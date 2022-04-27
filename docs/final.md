@@ -297,6 +297,9 @@ Since Word2Vec focuses on vectorization of individual words and TF-IDF is geared
 ### Spotify Features Approach 
 
 #### Clustering Evaluation
+
+After choosing Kmeans as the cluster algorithm 
+
 ##### Elbow Method
 Unbalanced
 <br />
